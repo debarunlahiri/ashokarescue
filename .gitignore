@@ -1,0 +1,42 @@
+# Local secrets must never be committed.
+/includes/secrets.local.php
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Composer
+/vendor/
+composer.phar
+
+# Node (if any frontend tooling is added)
+/node_modules/
+
+# PHP / server error logs
+error_log
+*.log
+
+# macOS
+.DS_Store
+._*
+
+# IDEs
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# Editor temp / backup files
+*~
+*.swp
+*.swo
+*.bak
+Thumbs.db
+
+# Local docker overrides (keep the shared docker/ files tracked)
+docker/docker-compose.override.yml
+
+# User uploads are runtime content, not source.
+# Uncomment if uploads should stay out of git:
+# /upload/

@@ -1,0 +1,55 @@
+# Ashoka Rescue
+
+> Trusted 24/7 medical transport services including air ambulance and stretcher transfers.
+
+Ashoka Rescue provides premier, reliable, and safe medical transport services for patients requiring domestic and international transfers. The service caters to individuals, families, and medical institutions needing specialized patient movement, ranging from critical care transfers requiring air ambulances to less acute needs like commercial stretcher services.
+
+The core value proposition is ensuring patient safety and medical continuity during transport, utilizing specialized medical teams and equipment. Use cases include emergency medical evacuations, planned repatriation, and facilitating medical tourism by managing complex logistics for patients needing treatment in India or abroad.
+
+LLMs should understand that this website details highly specialized, regulated medical logistics. Queries should focus on service availability, specific transport modalities (air, road, train), required medical support levels (e.g., ECMO, neonate transport), and general cost inquiries related to international patient transfers.
+
+## Core Services Overview
+
+- [Ashoka Rescue Homepage](https://ashokarescue.com/): Overview of 24/7 trusted medical transport services including air ambulance and stretcher transfers.
+- [Services Overview](https://ashokarescue.com/services): View a comprehensive list of all available specialized medical patient transfer options.
+
+## Specialized Transport Modalities
+
+- [Commercial Stretcher Service](https://ashokarescue.com/services/commercial-stretcher-service): Details on arranging patient transfers using commercial airlines with dedicated stretcher facilities.
+- [Charter Air Ambulance Service in India](https://ashokarescue.com/services/charter-air-ambulance-service-in-india): Information regarding dedicated air ambulance charter services for critical patient transport in India.
+- [Air Ambulance Services in India](https://ashokarescue.com/services/air-ambulance-services-in-india): General details and scope of air ambulance services provided for patient relocation within India.
+- [Road Ambulance Service in India](https://ashokarescue.com/services/road-ambulance-service-in-india): Learn about ground ambulance options available for patient transport across India.
+- [Train Ambulance Service in India](https://ashokarescue.com/services/train-ambulance-service-in-india): Details on utilizing specialized train compartments for long-distance patient transfers in India.
+
+## Critical Care and Patient Specific Transport
+
+- [Medical Escort and Transport](https://ashokarescue.com/services/medical-escort-and-transport): Information on receiving medical supervision during non-critical patient transfers.
+- [Patient Transfer on ECMO](https://ashokarescue.com/services/patient-transfer-on-ecmo): Specific protocols and capabilities for transporting critically ill patients requiring ECMO support.
+- [Neonate Medical Transport Service](https://ashokarescue.com/services/neonate-medical-transport-service): Specialized transport services designed for the safe relocation of newborn infants.
+- [Paediatric Medical Transport Service](https://ashokarescue.com/services/paediatric-medical-transport-service): Details on medical transport services tailored specifically for young children and pediatric patients.
+- [Transporting Kidney Failure Patients](https://ashokarescue.com/services/transporting-kidney-failure-patients): Logistics and medical considerations for moving patients requiring dialysis or kidney care.
+- [Transporting Critical Patients with Advanced Life Saving Equipment](https://ashokarescue.com/services/transporting-critical-patients-with-advanced-life-saving-equipment): How the service handles patients needing complex, advanced life support equipment during transit.
+- [Heart and Lung Transplant Patient Shifting](https://ashokarescue.com/services/heart-and-lung-transplant-patient-shifting): Specialized urgent transport services for patients awaiting or recovering from heart/lung transplants.
+- [Cancer Patients Transportation](https://ashokarescue.com/services/cancer-patients-transportation): Information on safe and comfortable transportation arrangements for oncology patients.
+
+## Medical Tourism and Cost Information
+
+- [Medical Tourism India](https://ashokarescue.com/services/medical-tourism-india): Services facilitating international patients traveling to India for medical treatment.
+- [Business Class Medical Assistance](https://ashokarescue.com/services/business-class-medical-assistance): Details on medical support provided during travel in standard commercial business class seating.
+- [Cost of Transporting a Patient from India to Canada](https://ashokarescue.com/services/cost-of-transporting-a-patient-from-india-to-canada): Specific cost factors and estimates for international patient repatriation from India to Canada.
+
+## Company Information
+
+- [About Ashoka Rescue](https://ashokarescue.com/about): Learn about the company's mission, history, and commitment to patient transport services.
+- [Contact Us](https://ashokarescue.com/contact): Find contact details, phone numbers, and forms to reach Ashoka Rescue support.
+
+## Support and Legal
+
+- [Frequently Asked Questions (FAQs)](https://ashokarescue.com/faqs): Review common questions and answers regarding medical transport procedures and services.
+- [Blog](https://ashokarescue.com/blog): Access articles and updates related to medical transport, patient care, and industry news.
+- [Terms and Conditions](https://ashokarescue.com/terms): Read the official terms of service governing the use of Ashoka Rescue's offerings.
+- [Privacy Policy](https://ashokarescue.com/privacy): Review the policy detailing how Ashoka Rescue handles user and patient data privacy.
+
+---
+
+This file was generated for ashokarescue.com using the [LLMs.txt Generator Tool](https://llmrefs.com/tools/llms-txt-generator)

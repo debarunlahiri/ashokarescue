@@ -1,0 +1,31 @@
+# Simple .htaccess for testing - rename to .htaccess if needed
+RewriteEngine On
+RewriteBase /ashoka-rescue-plain/
+
+# Canonical redirect
+RewriteCond %{HTTP_HOST} ^www\.ashokarescue\.com$ [NC]
+RewriteRule ^(.*)$ https://ashokarescue.com/ashoka-rescue-plain/$1 [R=301,L]
+
+# Clean URLs
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^about$ about.php [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^services$ services.php [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^contact$ contact.php [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^faqs$ faqs.php [L]
+
+# Dynamic service pages
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([a-zA-Z0-9-]+)$ service-detail.php?slug=$1 [NC,L,QSA]
+
+DirectoryIndex index.php index.html
