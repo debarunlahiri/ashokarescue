@@ -1576,6 +1576,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     </style>
+    <link rel="stylesheet" href="<?php echo htmlspecialchars(SITE_URL, ENT_QUOTES, 'UTF-8'); ?>/assets/css/tech-landing.css?v=<?php echo filemtime(__DIR__ . '/assets/css/tech-landing.css'); ?>">
 </head>
 
 <body>

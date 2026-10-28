@@ -10,7 +10,8 @@ $pageKeywords = 'Contact Ashoka Rescue, Medical Transport Quote, Air Ambulance C
 // Auto cache-busting: version string follows the file modification time,
 // so browsers always fetch fresh CSS after an edit (no manual version bumps).
 $additionalStyles = '<link rel="stylesheet" href="assets/css/home-modern.css?v=' . filemtime(__DIR__ . '/assets/css/home-modern.css') . '">'
-    . '<link rel="stylesheet" href="assets/css/pages-modern.css?v=' . filemtime(__DIR__ . '/assets/css/pages-modern.css') . '">';
+    . '<link rel="stylesheet" href="assets/css/pages-modern.css?v=' . filemtime(__DIR__ . '/assets/css/pages-modern.css') . '">'
+    . '<link rel="stylesheet" href="assets/css/rx-pages.css?v=' . filemtime(__DIR__ . '/assets/css/rx-pages.css') . '">';
 
 // Include header
 include __DIR__ . '/includes/header.php';
@@ -20,16 +21,18 @@ $list = getServices();
 ?>
 
 <!-- Banner Section -->
-<section class="banner-section contact-hero">
+<section class="banner-section contact-hero rx-contact-hero rx-dark">
+    <span class="rx-orb rx-orb--red" aria-hidden="true"></span>
+    <span class="rx-orb rx-orb--cyan" aria-hidden="true"></span>
     <div class="container">
         <div class="banner-content">
             <div class="contact-hero-copy">
-                <span class="page-kicker"><i class="fa-solid fa-headset"></i> Medical coordination available 24/7</span>
+                <span class="page-kicker" data-rx><i class="fa-solid fa-headset"></i> Medical coordination available 24/7</span>
                 <h1 class="banner-title" data-aos="fade-up" data-aos-duration="1500">Let’s plan the safest<br><span>patient transfer.</span></h1>
                 <p data-aos="fade-up" data-aos-duration="2500">Tell us about the patient’s condition, current location, and destination. Our medical transport team will guide you through the next steps.</p>
                 <div class="contact-hero-actions">
-                    <a href="tel:<?php echo str_replace(' ', '', EMERGENCY_PHONE); ?>" class="btn contact-hero-primary"><i class="fa-solid fa-phone"></i> Call emergency desk</a>
-                    <a href="<?php echo WHATSAPP_LINK; ?>" target="_blank" class="btn contact-hero-secondary"><i class="fa-brands fa-whatsapp"></i> Message on WhatsApp</a>
+                    <a href="tel:<?php echo str_replace(' ', '', EMERGENCY_PHONE); ?>" class="btn contact-hero-primary rx-btn rx-btn--red" data-magnetic><i class="fa-solid fa-phone"></i> Call emergency desk</a>
+                    <a href="<?php echo WHATSAPP_LINK; ?>" target="_blank" class="btn contact-hero-secondary rx-btn rx-btn--ghost" data-magnetic><i class="fa-brands fa-whatsapp"></i> Message on WhatsApp</a>
                 </div>
             </div>
         </div>
@@ -38,47 +41,47 @@ $list = getServices();
 <!--/Banner Section -->
 
 <!-- Contact Featured Section -->
-<section class="contact-featured sec-py">
+<section class="contact-featured rx-channels rx-sec-py">
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
                 <div class="section-header">
-                    <span class="page-section-kicker">Reach our team</span>
-                    <h2 class="section-title text-capitalize" data-aos="fade-up" data-aos-duration="1500">Direct help, wherever your patient needs to travel.</h2>
+                    <p class="rx-kicker" data-rx>Reach our team</p>
+                    <h2 class="rx-sec-title text-capitalize" data-rx style="--rx-d:.08s">Direct help, wherever your patient needs to travel.</h2>
                 </div>
             </div>
         </div>
-        <div class="row g-0 contact-channel-grid">
-            <div class="col-lg-3">
-                <div class="card" data-aos="fade-up" data-aos-duration="1000">
-                    <div class="icon-box">
-                        <img src="<?php echo IMG_PATH; ?>icons/location.svg" class="img-fluid" alt="">
+        <div class="contact-methods">
+            <div class="contact-method">
+                <div class="contact-method-panel">
+                    <div class="contact-method-icon">
+                        <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
                     </div>
-                    <div class="card-body">
+                    <div class="contact-method-copy">
                         <h3 class="title">Office location</h3>
                         <p>UG 124,Ansal Palam Corporate Plaza, Palam Vihar, Gurugram, Haryana, India - 122017</p>
                     </div>
                 </div>
                 <!--/card -->
             </div>
-            <div class="col-lg-3">
-                <div class="card" data-aos="fade-up" data-aos-duration="1500">
-                    <div class="icon-box">
-                        <img src="<?php echo IMG_PATH; ?>icons/message.svg" class="img-fluid" alt="">
+            <div class="contact-method">
+                <div class="contact-method-panel">
+                    <div class="contact-method-icon">
+                        <i class="fa-solid fa-comment-dots" aria-hidden="true"></i>
                     </div>
-                    <div class="card-body">
+                    <div class="contact-method-copy">
                         <h3 class="title">Send a message</h3>
                         <p>Send us a message, and our team will get back to you promptly</p>
                     </div>
                 </div>
                 <!--/card -->
             </div>
-            <div class="col-lg-3">
-                <div class="card" data-aos="fade-up" data-aos-duration="2000">
-                    <div class="icon-box">
-                        <img src="<?php echo IMG_PATH; ?>icons/envelope.svg" class="img-fluid" alt="">
+            <div class="contact-method">
+                <div class="contact-method-panel">
+                    <div class="contact-method-icon">
+                        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
                     </div>
-                    <div class="card-body">
+                    <div class="contact-method-copy">
                         <h3 class="title">Contact Us</h3>
                         <span>Phone : <a href="tel:+919818933004">+919818933004</a></span>
                         <span> Email : <a href="mailto:ashokarescue@gmail.com">ashokarescue@gmail.com</a></span>
@@ -87,13 +90,13 @@ $list = getServices();
                 </div>
                 <!--/card -->
             </div>
-            <div class="col-lg-3">
-                <div class="card" data-aos="fade-up" data-aos-duration="2500">
-                    <div class="icon-box">
-                        <img src="<?php echo IMG_PATH; ?>icons/follow-us.svg" class="img-fluid" alt="">
+            <div class="contact-method">
+                <div class="contact-method-panel">
+                    <div class="contact-method-icon">
+                        <i class="fa-solid fa-users" aria-hidden="true"></i>
                     </div>
-                    <div class="card-body">
-                        <h3 class="title">Follow US</h3>
+                    <div class="contact-method-copy">
+                        <h3 class="title">Follow Us</h3>
                         <p>Join our community to stay informed and engaged on our social media channels</p>
                     </div>
                 </div>
@@ -105,15 +108,15 @@ $list = getServices();
 <!--/Contact Featured Section -->
 
 <!-- Contact Form Section -->
-<section class="contact-section">
+<section class="contact-section rx-form-sec rx-sec-py">
     <div class="container">
         <div class="row g-4 contact-layout">
             <div class="col-lg-7">
-                <form action="#" id="request-quote-form" class="contact-form-card" data-aos="fade-up" data-aos-duration="1200">
+                <form action="#" id="request-quote-form" class="contact-form-card rx-form-card" data-rx="left">
                     <input type="hidden" name="csrf_token" value="<?php echo generateCSRFToken(); ?>">
                     <div class="contact-form p-3 p-lg-5">
-                        <span class="page-section-kicker">Request assistance</span>
-                        <h3 class="section-title text-capitalize" data-aos="fade-up" data-aos-duration="1500">Tell us how we can help</h3>
+                        <p class="rx-kicker">Request assistance</p>
+                        <h3 class="rx-sec-title text-capitalize">Tell us how we can help</h3>
                         <p class="form-intro">Share the essential details and our team will contact you to discuss the safest available option.</p>
                         <div class="form-group">
                             <label for="contact-name" class="form-label">Full Name<span>*</span></label>
@@ -140,13 +143,13 @@ $list = getServices();
                             <textarea id="contact-message" class="form-control" rows="3" name="details" required></textarea>
                         </div>
                         <button type="button" id="request-quote-form_btn"
-                            class="btn btn-solid btn-md rounded">Send request <i class="fa-solid fa-arrow-right"></i></button>
+                            class="btn btn-solid btn-md rounded rx-btn rx-btn--red" data-magnetic>Send request <i class="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </form>
             </div>
             <div class="col-lg-5">
                 <div class="contact-rail">
-                    <div class="contact-emergency-card" data-aos="fade-up" data-aos-duration="1200">
+                    <div class="contact-emergency-card rx-emergency-card" data-rx="right">
                         <span class="page-kicker">Urgent transfer</span>
                         <h3>Need help right now?</h3>
                         <p>Our medical coordination desk answers around the clock, anywhere in the world.</p>
@@ -157,7 +160,7 @@ $list = getServices();
                             <i class="fa-brands fa-whatsapp"></i> WhatsApp us
                         </a>
                     </div>
-                    <div class="contact-map-frame" data-aos="fade-up" data-aos-duration="1400">
+                    <div class="contact-map-frame rx-map-frame" data-rx="right" style="--rx-d:.12s">
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3505.8527819200453!2d77.04145307456797!3d28.514076689451855!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd309eebed77%3A0x164e92a2202ddf78!2sAshoka%20Rescue%20Air%20Ambulance%20Services%20Pvt%20Ltd!5e0!3m2!1sen!2sin!4v1714708811414!5m2!1sen!2sin"
                             style="border:0;" allowfullscreen="" loading="lazy"

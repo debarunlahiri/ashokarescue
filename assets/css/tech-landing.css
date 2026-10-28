@@ -1,0 +1,152 @@
+/* Standalone enquiry page, aligned with the public website. */
+:root {
+    --navy: #091b2b;
+    --orange: #ff5722;
+    --orange-dark: #c93b10;
+    --muted: #526879;
+    --line: #dce5eb;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+    text-wrap: balance;
+    letter-spacing: -.035em;
+}
+
+.site-header {
+    border-bottom: 1px solid var(--line);
+    box-shadow: none;
+}
+
+.hero-grid {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+    gap: clamp(32px, 5vw, 72px);
+    padding-block: clamp(40px, 6vw, 80px);
+}
+
+.hero::after {
+    inset: 0;
+    width: auto;
+    height: auto;
+    border: 0;
+    border-radius: 0;
+    background-image: linear-gradient(rgb(121 227 238 / 5%) 1px, transparent 1px),
+        linear-gradient(90deg, rgb(121 227 238 / 5%) 1px, transparent 1px);
+    background-size: 64px 64px;
+}
+
+.hero-copy {
+    padding-top: 16px;
+}
+
+.hero-copy h1 {
+    font-size: clamp(2.3rem, 4.2vw, 4rem);
+    line-height: 1.12;
+}
+
+.enquiry-card {
+    border: 1px solid #a8becb;
+    border-radius: 12px;
+    box-shadow: 16px 16px 0 rgb(121 227 238 / 8%);
+}
+
+.form-heading {
+    border-bottom: 1px solid var(--line);
+    background: #f3f6f8;
+}
+
+.field input, .field select, .field textarea {
+    border-radius: 8px;
+    background-color: #f8fafb;
+}
+
+.field select {
+    padding-right: 42px;
+    background-position: right 14px center;
+}
+
+.submit-button, .header-call, .primary-button, .secondary-button {
+    border-radius: 8px;
+    box-shadow: none;
+}
+
+.trust-strip {
+    background: #f3f6f8;
+}
+
+.section {
+    padding-block: clamp(48px, 6vw, 88px);
+}
+
+.service-card, .faq-item, .gallery-item {
+    border-radius: 12px;
+    box-shadow: none;
+    border-color: var(--line);
+}
+
+.service-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgb(9 27 43 / 8%);
+}
+
+.faq-list {
+    max-width: 900px;
+    margin-inline: auto;
+}
+
+.bottom-cta {
+    background: #112c40;
+    border-top: 1px solid #365062;
+}
+
+.site-footer {
+    background: #091b2b;
+    color: #e1eaf0;
+}
+
+.site-footer a {
+    color: #e1eaf0;
+}
+
+:where(a, button, input, textarea, select):focus-visible {
+    outline: 3px solid #087c95;
+    outline-offset: 4px;
+}
+
+@media (max-width: 991.98px) {
+    .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .hero-copy {
+        max-width: 720px;
+    }
+
+    .enquiry-card {
+        width: 100%;
+        max-width: 720px;
+        box-shadow: none;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .trust-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .hero-copy h1 {
+        font-size: 2.3rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

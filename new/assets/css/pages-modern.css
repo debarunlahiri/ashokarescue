@@ -1,0 +1,835 @@
+:root {
+    --page-navy: #071b33;
+    --page-blue: #0b5bd3;
+    --page-cyan: #26b9cf;
+    --page-red: #e44343;
+    --page-ink: #14243a;
+    --page-muted: #65758b;
+    --page-surface: #f4f8fc;
+    --page-line: #dce7f2;
+}
+
+.page-kicker,
+.page-section-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    margin-bottom: .9rem;
+    color: var(--page-blue);
+    font-size: .78rem;
+    font-weight: 800;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+}
+
+/* Contact hero */
+.contact-hero {
+    position: relative;
+    min-height: 560px;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 82% 22%, rgba(38, 185, 207, .25), transparent 24%),
+        linear-gradient(135deg, var(--page-navy), #0b315f);
+}
+
+.contact-hero::after {
+    content: '';
+    position: absolute;
+    right: 8%;
+    bottom: -100px;
+    width: 390px;
+    height: 390px;
+    border: 1px solid rgba(116, 221, 234, .15);
+    border-radius: 50%;
+    box-shadow:
+        0 0 0 70px rgba(116, 221, 234, .035),
+        0 0 0 140px rgba(116, 221, 234, .025);
+}
+
+.contact-hero .container,
+.contact-hero .banner-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+}
+
+.contact-hero .banner-content {
+    display: flex;
+    align-items: center;
+    min-height: 560px;
+    padding: 5rem 0;
+}
+
+.contact-hero-copy {
+    max-width: 760px;
+}
+
+.contact-hero .page-kicker {
+    color: #74ddea;
+}
+
+.contact-hero .banner-title {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(2.8rem, 5vw, 5rem);
+    font-weight: 800;
+    line-height: 1.03;
+    letter-spacing: -.055em;
+    text-transform: none;
+}
+
+.contact-hero .banner-title span {
+    color: #74ddea;
+}
+
+.contact-hero .banner-content p {
+    max-width: 650px;
+    margin: 1.25rem 0 1.7rem;
+    color: #c3d2e1;
+    font-size: 1.06rem;
+    line-height: 1.75;
+}
+
+.contact-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .8rem;
+}
+
+.contact-hero-actions .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .55rem;
+    min-height: 50px;
+    padding: .75rem 1.15rem;
+    border-radius: 10px;
+    font-weight: 800;
+    text-transform: none;
+}
+
+.contact-hero-primary {
+    color: #fff;
+    border-color: var(--page-red);
+    background: var(--page-red);
+}
+
+.contact-hero-secondary {
+    color: #fff;
+    border-color: rgba(255, 255, 255, .38);
+    background: rgba(255, 255, 255, .1);
+}
+
+/* Contact channels */
+.contact-featured {
+    background: #fff;
+}
+
+.contact-featured .section-header {
+    max-width: 780px;
+}
+
+.contact-channel-grid {
+    overflow: hidden;
+    border-top: 1px solid var(--page-line);
+    border-bottom: 1px solid var(--page-line);
+}
+
+.contact-featured .contact-channel-grid > div {
+    border-right: 1px solid var(--page-line);
+}
+
+.contact-featured .contact-channel-grid > div:last-child {
+    border-right: 0;
+}
+
+.contact-featured .card {
+    height: 100%;
+    padding: 1.8rem 1.4rem;
+    text-align: left;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+}
+
+.contact-featured .card .icon-box {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1.15rem;
+    border-radius: 12px;
+    background: #e8f1ff;
+}
+
+.contact-featured .card .icon-box img {
+    width: 26px;
+    height: 26px;
+}
+
+.contact-featured .card .card-body {
+    padding: 0;
+}
+
+.contact-featured .card .card-body .title {
+    color: var(--page-navy);
+    font-size: 1.08rem;
+}
+
+.contact-featured .card .card-body p,
+.contact-featured .card .card-body span,
+.contact-featured .card .card-body span a {
+    color: var(--page-muted);
+    line-height: 1.65;
+}
+
+.contact-featured .card .card-body a:hover {
+    color: var(--page-blue);
+}
+
+/* Contact form and map */
+.contact-section {
+    padding: clamp(4rem, 7vw, 7rem) 0;
+    background: var(--page-surface) !important;
+}
+
+.contact-layout {
+    --bs-gutter-x: 1.5rem;
+}
+
+.contact-form-card {
+    position: relative;
+    height: 100%;
+    border: 1px solid var(--page-line);
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: 0 22px 60px rgba(7, 27, 51, .08);
+}
+
+.contact-form-card::before,
+.contact-form-card::after {
+    content: '';
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    border: 0 solid var(--page-red);
+    pointer-events: none;
+}
+
+.contact-form-card::before {
+    top: 12px;
+    left: 12px;
+    border-top-width: 2px;
+    border-left-width: 2px;
+    border-top-left-radius: 6px;
+}
+
+.contact-form-card::after {
+    right: 12px;
+    bottom: 12px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-bottom-right-radius: 6px;
+}
+
+.contact-rail {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    height: 100%;
+}
+
+.contact-emergency-card {
+    position: relative;
+    overflow: hidden;
+    padding: 2rem;
+    border-radius: 20px;
+    background:
+        radial-gradient(circle at 85% 15%, rgba(38, 185, 207, .22), transparent 30%),
+        linear-gradient(135deg, var(--page-navy), #0b315f);
+}
+
+.contact-emergency-card .page-kicker {
+    color: #74ddea;
+}
+
+.contact-emergency-card h3 {
+    margin: 0 0 .5rem;
+    color: #fff;
+    font-size: 1.6rem;
+    line-height: 1.2;
+    letter-spacing: -.02em;
+    text-transform: none;
+}
+
+.contact-emergency-card p {
+    margin: 0 0 1.4rem;
+    color: #b8c8d9;
+    line-height: 1.6;
+}
+
+.contact-emergency-call,
+.contact-emergency-wa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .6rem;
+    width: 100%;
+    min-height: 52px;
+    margin-bottom: .7rem;
+    border-radius: 10px;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.contact-emergency-call {
+    color: #fff;
+    background: var(--page-red);
+    font-size: 1.1rem;
+    letter-spacing: .02em;
+}
+
+.contact-emergency-call:hover,
+.contact-emergency-call:focus {
+    color: #fff;
+    background: #c93333;
+}
+
+.contact-emergency-wa {
+    margin-bottom: 0;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, .35);
+    background: rgba(255, 255, 255, .08);
+}
+
+.contact-emergency-wa:hover,
+.contact-emergency-wa:focus {
+    color: #fff;
+    background: rgba(255, 255, 255, .16);
+}
+
+.contact-map-frame {
+    flex: 1;
+    overflow: hidden;
+    min-height: 340px;
+    border: 1px solid var(--page-line);
+    border-radius: 20px;
+    background: var(--page-surface);
+}
+
+.contact-map-frame iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 340px;
+    border: 0;
+    filter: saturate(.75) contrast(1.05);
+}
+
+.contact-form {
+    height: 100%;
+    padding: clamp(2rem, 4vw, 3.5rem) !important;
+}
+
+.contact-form .section-title {
+    margin-bottom: .8rem;
+    color: var(--page-navy);
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    letter-spacing: -.035em;
+    text-transform: none !important;
+}
+
+.contact-form .form-intro {
+    margin-bottom: 2rem;
+    color: var(--page-muted);
+    line-height: 1.65;
+}
+
+.contact-form .form-group {
+    margin-bottom: 1.15rem;
+}
+
+.contact-form .form-label {
+    margin-bottom: .45rem;
+    color: var(--page-ink);
+    font-size: .88rem;
+    font-weight: 800;
+}
+
+.contact-form .form-control,
+.contact-form .form-select {
+    min-height: 50px;
+    padding: .75rem .9rem;
+    color: var(--page-ink);
+    border: 1px solid #ccdbea;
+    border-radius: 9px;
+    background-color: #fbfdff;
+}
+
+.contact-form .form-select {
+    padding-right: 2.75rem;
+    background-position: right .9rem center;
+}
+
+.contact-form textarea.form-control {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.contact-form .form-control:focus,
+.contact-form .form-select:focus {
+    border-color: var(--page-blue);
+    box-shadow: 0 0 0 3px rgba(11, 91, 211, .12);
+}
+
+.contact-form .btn-solid {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .55rem;
+    min-height: 50px;
+    margin-top: .4rem;
+    padding: .75rem 1.2rem;
+    border-color: var(--page-blue);
+    border-radius: 9px !important;
+    background: var(--page-blue);
+    text-transform: none;
+}
+
+/* FAQ hero */
+.faq-hero {
+    min-height: 500px;
+    background: var(--page-navy);
+}
+
+.faq-hero .banner-bg,
+.faq-hero .banner-bg img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.faq-hero .banner-bg img {
+    object-fit: cover;
+}
+
+.faq-hero::before {
+    display: block;
+    z-index: 1;
+    background: linear-gradient(90deg, rgba(5, 20, 39, .98), rgba(5, 20, 39, .78) 55%, rgba(5, 20, 39, .2));
+}
+
+.faq-hero .banner-content {
+    z-index: 2;
+    top: 50%;
+    left: max(24px, calc((100vw - 1320px) / 2));
+    width: min(760px, calc(100% - 48px));
+    transform: translateY(-50%);
+}
+
+.faq-hero .page-kicker {
+    color: #74ddea;
+}
+
+.faq-hero .banner-content .banner-title {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(2.8rem, 5vw, 4.8rem);
+    line-height: 1.04;
+    letter-spacing: -.05em;
+    text-transform: none;
+}
+
+.faq-hero .banner-content p {
+    max-width: 650px;
+    margin: 1.2rem 0 0;
+    color: #c5d4e2;
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+/* FAQ content */
+.faq-page-section {
+    background: var(--page-surface);
+}
+
+.faq-page-section > .container > .row {
+    --bs-gutter-x: clamp(2.5rem, 7vw, 7rem);
+}
+
+.faq-page-intro {
+    position: sticky;
+    top: 120px;
+}
+
+.faq-page-intro .section-title {
+    margin-bottom: 1.1rem;
+    color: var(--page-navy);
+    font-size: clamp(2rem, 3vw, 3rem);
+}
+
+.faq-page-intro > p {
+    color: var(--page-muted);
+    line-height: 1.75;
+}
+
+.faq-support-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .8rem;
+    margin-top: 1rem;
+    color: var(--page-navy);
+    font-weight: 800;
+}
+
+.faq-support-link > i {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    color: #fff;
+    border-radius: 10px;
+    background: var(--page-red);
+}
+
+.faq-support-link span,
+.faq-support-link small {
+    display: block;
+}
+
+.faq-support-link small {
+    margin-bottom: .1rem;
+    color: var(--page-muted);
+    font-size: .7rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+}
+
+.faq-page-accordion {
+    border-top: 1px solid var(--page-line);
+}
+
+.faq-page-accordion .accordion-item {
+    border: 0;
+    border-bottom: 1px solid var(--page-line);
+    background: transparent;
+}
+
+.faq-page-accordion .accordion-button {
+    gap: 1rem;
+    padding: 1.45rem 0;
+    color: var(--page-navy);
+    background: transparent;
+    font-size: 1.02rem;
+    font-weight: 800;
+    line-height: 1.45;
+    box-shadow: none;
+}
+
+.faq-page-accordion .accordion-button::after {
+    display: grid;
+    flex: 0 0 auto;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    margin-left: auto;
+    color: var(--page-blue);
+    border: 1px solid var(--page-line);
+    border-radius: 50%;
+    background: #fff;
+    background-image: none;
+    content: '\2b';
+    font-family: 'Font Awesome 6 Free';
+    font-size: .8rem;
+    font-weight: 900;
+}
+
+.faq-page-accordion .accordion-button:not(.collapsed)::after {
+    color: #fff;
+    border-color: var(--page-blue);
+    background: var(--page-blue);
+    content: '\f068';
+    transform: none;
+}
+
+.faq-page-accordion .accordion-button:focus {
+    box-shadow: none;
+}
+
+.faq-page-accordion .accordion-body {
+    max-width: 760px;
+    padding: 0 3rem 1.5rem 0;
+    color: var(--page-muted);
+    line-height: 1.75;
+}
+
+.faq-contact-cta {
+    padding: 0 0 clamp(4rem, 7vw, 7rem);
+    background: var(--page-surface);
+}
+
+.faq-contact-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: clamp(2rem, 4vw, 3.5rem);
+    border-radius: 20px;
+    background: var(--page-navy);
+}
+
+.faq-contact-inner span {
+    color: #74ddea;
+    font-size: .78rem;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.faq-contact-inner h2 {
+    max-width: 720px;
+    margin: .5rem 0 0;
+    color: #fff;
+    font-size: clamp(1.75rem, 3vw, 2.7rem);
+    line-height: 1.15;
+}
+
+.faq-contact-inner .btn {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: .55rem;
+    padding: .8rem 1.15rem;
+    color: var(--page-navy);
+    border-radius: 9px;
+    background: #fff;
+    font-weight: 800;
+    text-transform: none;
+}
+
+@media (max-width: 991.98px) {
+    .contact-featured .contact-channel-grid > div:nth-child(2) {
+        border-right: 0;
+    }
+
+    .contact-featured .contact-channel-grid > div {
+        border-bottom: 1px solid var(--page-line);
+    }
+
+    .faq-page-intro {
+        position: static;
+        margin-bottom: 2.5rem;
+    }
+
+    .faq-contact-inner {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .contact-hero,
+    .contact-hero .banner-content {
+        min-height: 650px;
+    }
+
+    .contact-hero-actions {
+        flex-direction: column;
+    }
+
+    .contact-hero-actions .btn {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .contact-featured .contact-channel-grid > div {
+        border-right: 0;
+    }
+
+    .contact-form {
+        padding: 1.5rem !important;
+    }
+
+    .faq-hero {
+        min-height: 460px;
+    }
+
+    .faq-page-accordion .accordion-button {
+        font-size: .95rem;
+    }
+
+    .faq-page-accordion .accordion-body {
+        padding-right: 0;
+    }
+}
+
+/* ============ Techy pass: contact page ============ */
+
+/* Mono kickers with red dash (site language) */
+.page-kicker,
+.page-section-kicker {
+    gap: .7rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: .72rem;
+    letter-spacing: .22em;
+}
+
+.page-kicker::before,
+.page-section-kicker::before {
+    content: '';
+    flex: 0 0 auto;
+    width: 26px;
+    height: 2px;
+    background: var(--page-red);
+}
+
+.page-kicker i {
+    display: none;
+}
+
+/* Channel icon chips: hairline frame */
+.contact-featured .card .icon-box {
+    border: 1px solid var(--page-line);
+}
+
+/* Submit button: emergency red, matching the call CTA */
+.contact-form .btn-solid {
+    border-color: var(--page-red);
+    background: var(--page-red);
+    font-weight: 800;
+}
+
+.contact-form .btn-solid:hover,
+.contact-form .btn-solid:focus {
+    color: #fff;
+    border-color: #c93333;
+    background: #c93333;
+}
+
+/* ============ FAQ redesign ============ */
+
+/* Banner: two-tone heading like the other pages */
+.faq-hero .banner-title span {
+    color: #74ddea;
+}
+
+/* Intro rail becomes a navy coordination card */
+.faq-page-intro {
+    padding: 2rem;
+    border-radius: 20px;
+    background:
+        radial-gradient(circle at 85% 12%, rgba(38, 185, 207, .2), transparent 32%),
+        linear-gradient(135deg, var(--page-navy), #0b315f);
+    box-shadow: 0 22px 55px rgba(7, 27, 51, .18);
+}
+
+.faq-page-intro .page-section-kicker {
+    color: #74ddea;
+}
+
+.faq-page-intro .section-title {
+    color: #fff;
+}
+
+.faq-page-intro > p {
+    color: #b8c8d9;
+}
+
+.faq-support-link {
+    display: flex;
+    width: 100%;
+    margin-top: 1.5rem;
+    padding: 1rem 1.1rem;
+    border: 1px solid rgba(255, 255, 255, .16);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, .07);
+    color: #fff;
+    text-decoration: none;
+    transition: background .25s ease;
+}
+
+.faq-support-link:hover,
+.faq-support-link:focus {
+    color: #fff;
+    background: rgba(255, 255, 255, .13);
+}
+
+.faq-support-link span {
+    color: #fff;
+    font-size: 1.05rem;
+}
+
+.faq-support-link small {
+    color: #8fa3b8;
+}
+
+/* Accordion becomes a card stack */
+.faq-page-accordion {
+    display: grid;
+    gap: .9rem;
+    border-top: 0;
+}
+
+.faq-page-accordion .accordion-item {
+    overflow: hidden;
+    border: 1px solid var(--page-line);
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(12, 44, 78, .05);
+}
+
+.faq-page-accordion .accordion-button {
+    padding: 1.3rem 1.4rem;
+}
+
+.faq-page-accordion .accordion-body {
+    max-width: none;
+    padding: 0 1.4rem 1.4rem;
+}
+
+/* CTA band: corner ticks + mono kicker */
+.faq-contact-inner {
+    position: relative;
+}
+
+.faq-contact-inner::before,
+.faq-contact-inner::after {
+    content: '';
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    border: 0 solid var(--page-red);
+    pointer-events: none;
+}
+
+.faq-contact-inner::before {
+    top: 14px;
+    left: 14px;
+    border-top-width: 2px;
+    border-left-width: 2px;
+    border-top-left-radius: 6px;
+}
+
+.faq-contact-inner::after {
+    right: 14px;
+    bottom: 14px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-bottom-right-radius: 6px;
+}
+
+.faq-contact-inner > div > span {
+    display: inline-flex;
+    align-items: center;
+    gap: .7rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    letter-spacing: .22em;
+}
+
+.faq-contact-inner > div > span::before {
+    content: '';
+    flex: 0 0 auto;
+    width: 26px;
+    height: 2px;
+    background: var(--page-red);
+}

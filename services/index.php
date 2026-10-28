@@ -12,7 +12,8 @@ $pageKeywords = 'Medical Services, Ambulance Services, Air Ambulance, Commercial
 // Auto cache-busting: version string follows the file modification time,
 // so browsers always fetch fresh CSS after an edit (no manual version bumps).
 $additionalStyles = '<link rel="stylesheet" href="../assets/css/home-modern.css?v=' . filemtime(__DIR__ . '/../assets/css/home-modern.css') . '">'
-    . '<link rel="stylesheet" href="../assets/css/services-modern.css?v=' . filemtime(__DIR__ . '/../assets/css/services-modern.css') . '">';
+    . '<link rel="stylesheet" href="../assets/css/services-modern.css?v=' . filemtime(__DIR__ . '/../assets/css/services-modern.css') . '">'
+    . '<link rel="stylesheet" href="../assets/css/rx-services.css?v=' . filemtime(__DIR__ . '/../assets/css/rx-services.css') . '">';
 include __DIR__ . '/../includes/header.php';
 
 // Get all services
@@ -20,13 +21,15 @@ $list = getServices();
 ?>
 
 <!-- Banner Section -->
-<section class="banner-section banner-section-bg services-hero">
+<section class="banner-section banner-section-bg services-hero rx-banner rx-dark">
+    <span class="rx-orb rx-orb--red" aria-hidden="true"></span>
+    <span class="rx-orb rx-orb--cyan" aria-hidden="true"></span>
     <div class="banner-bg">
         <img src="<?php echo IMG_PATH; ?>about-banner.jpg" class="img-fluid" alt="">
     </div>
     <div class="container">
         <div class="banner-content">
-            <span class="svc-hero-kicker">Doctor-led medical transport</span>
+            <span class="svc-hero-kicker about-eyebrow" data-rx>Doctor-led medical transport</span>
             <h1 class="banner-title" data-aos="fade-up" data-aos-duration="1500">Critical care,<br><span>in transit.</span></h1>
             <p data-aos="fade-up" data-aos-duration="2500">Air ambulance, commercial stretcher, road and rail transfers — every service configured around the patient's condition, route and clinical needs.</p>
         </div>
@@ -35,12 +38,12 @@ $list = getServices();
 <!--/Banner Section -->
 
 <!-- Services Index -->
-<section class="services-index sec-py">
+<section class="services-index rx-svc-index rx-sec-py">
     <div class="container">
         <div class="section-header">
-            <p class="svc-kicker">Service index</p>
-            <h2 class="section-title">Medical transport services</h2>
-            <p>Doctor-led transfers by air, road and rail — every service configured around the patient's clinical needs.</p>
+            <p class="rx-kicker" data-rx>Service index</p>
+            <h2 class="rx-sec-title" data-rx style="--rx-d:.08s">Medical transport services</h2>
+            <p class="rx-lead" data-rx style="--rx-d:.15s">Doctor-led transfers by air, road and rail — every service configured around the patient's clinical needs.</p>
         </div>
         <div class="svc-grid">
             <?php foreach ($list as $item):
@@ -51,7 +54,7 @@ $list = getServices();
                 $serviceUrl = getServiceURL($item['slug']);
                 $serviceTitle = htmlspecialchars($item['title']);
             ?>
-                <article class="svc-card" data-aos="fade-up" data-aos-duration="800">
+                <article class="svc-card rx-svc-index-card" data-rx data-tilt="5">
                     <a class="svc-media" href="<?php echo $serviceUrl; ?>" aria-label="<?php echo $serviceTitle; ?>">
                         <img src="<?php echo SITE_URL . $item['banner']; ?>" class="img-fluid"
                             alt="<?php echo $serviceTitle; ?>" loading="lazy">

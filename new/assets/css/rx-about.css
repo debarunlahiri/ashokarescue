@@ -1,0 +1,141 @@
+/* Ashoka Rescue - About redesign (2026-10-12), part 1/3: banner + story */
+.rx-banner.banner-section { position: relative; overflow: hidden; background: #071423;
+    min-height: 54vh; display: flex; align-items: center; }
+.rx-banner .banner-bg { position: absolute; inset: 0; }
+.rx-banner .banner-bg img { width: 100%; height: 100%; object-fit: cover; opacity: .45;
+    animation: rxKenBurns 18s ease-in-out infinite alternate; }
+.rx-banner .banner-bg::after { content: ''; position: absolute; inset: 0;
+    background: linear-gradient(100deg, rgba(7,18,34,.94) 10%, rgba(7,18,34,.55) 55%, rgba(7,18,34,.25)); }
+.rx-banner .banner-content { position: relative; z-index: 2; padding: 5.5rem 0; max-width: 740px; }
+.rx-banner .banner-title { color: #fff; font-family: var(--rx-display); font-weight: 800;
+    font-size: clamp(2.4rem, 4.6vw, 3.8rem); line-height: 1.08; letter-spacing: -.015em;
+    text-shadow: 0 4px 30px rgba(0,0,0,.4); }
+.rx-banner .banner-title span { color: var(--rx-cyan); }
+.rx-banner .banner-content > p { color: rgba(233,240,249,.84); font-size: 1.08rem; line-height: 1.7; max-width: 600px; }
+.rx-banner .about-eyebrow { display: inline-flex; align-items: center; gap: .6rem; padding: .55rem 1.1rem;
+    border-radius: 999px; border: 1px solid rgba(255,255,255,.28); background: rgba(255,255,255,.1);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: #fff;
+    font-family: var(--rx-display); font-size: .7rem; font-weight: 800; letter-spacing: .2em;
+    text-transform: uppercase; margin-bottom: 1.4rem; }
+.rx-banner .about-eyebrow i { color: var(--rx-cyan); }
+.rx-banner .rx-orb--red { top: -120px; right: -100px; z-index: 1; }
+.rx-banner .rx-orb--cyan { bottom: -140px; left: 30%; z-index: 1; }
+
+.rx-about { background: #fff; }
+.rx-about .about-img { min-height: 380px; }
+.rx-about .about-content p { color: var(--rx-muted); line-height: 1.85; }
+.rx-about-stat { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2rem; }
+.rx-about-stat > div { background: var(--rx-paper); border: 1px solid rgba(13,42,67,.1);
+    border-radius: 16px; padding: 1.3rem 1rem; text-align: center;
+    transition: transform .35s var(--rx-ease), box-shadow .35s var(--rx-ease); }
+.rx-about-stat > div:hover { transform: translateY(-6px); box-shadow: 0 20px 40px -18px rgba(10,26,47,.3); background: #fff; }
+.rx-about-stat strong { display: block; font-family: var(--rx-display); font-size: 1.9rem;
+    font-weight: 800; color: var(--rx-red); line-height: 1.1; }
+.rx-about-stat span { font-size: .78rem; font-weight: 700; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--rx-muted); }
+@media (max-width: 575.98px) { .rx-about-stat { grid-template-columns: 1fr; } }
+/* Kill stale 'Certified care' badge: its right/bottom offsets merge with
+   .rx-frame::after's inset:0, stretching it into a full-image dark overlay. */
+.rx-about.about-section .about-img::after { content: none; }
+/* Mentor: dark clinical-leadership panel */
+.rx-mentor { position: relative; overflow: hidden; color: #eaf2fa;
+    background: radial-gradient(800px 420px at 90% 0%, rgba(228,67,67,.14), transparent 60%),
+        linear-gradient(180deg, #0e2338, #0a1a2f); }
+.rx-mentor::before { content: ''; position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1.5px); background-size: 28px 28px;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, #000 20%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, #000 20%, transparent 100%); pointer-events: none; }
+.rx-mentor .mentor-img { min-height: 420px; }
+.rx-mentor .mentor-about { position: relative; z-index: 1; }
+.rx-mentor .mentor-about h2 { color: #fff; }
+.rx-mentor .mentor-about p { color: rgba(234,242,250,.78); line-height: 1.85; }
+.rx-mentor .mentor-cred { display: inline-block; margin-bottom: 1.2rem; padding: .55rem 1.2rem;
+    border-radius: 999px; border: 1px solid rgba(87,217,255,.4); color: var(--rx-cyan);
+    font-family: var(--rx-display); font-size: .78rem; font-weight: 800; letter-spacing: .14em; }
+
+/* How we assist: interactive cards */
+.rx-assist { background: linear-gradient(180deg, #f5f8fc, #eef3f9); }
+.rx-assist-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.3rem; margin-top: 2.6rem; }
+@media (max-width: 991.98px) { .rx-assist-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 575.98px) { .rx-assist-grid { grid-template-columns: 1fr; } }
+.rx-assist-card { position: relative; background: #fff; border-radius: var(--rx-radius);
+    border: 1px solid rgba(13,42,67,.09); padding: 2.1rem 1.7rem; overflow: hidden;
+    box-shadow: 0 18px 44px -22px rgba(10,26,47,.25);
+    transition: transform .4s var(--rx-ease), box-shadow .4s var(--rx-ease); }
+.rx-assist-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--rx-red), var(--rx-orange)); transform: scaleX(0);
+    transform-origin: left; transition: transform .5s var(--rx-ease); }
+.rx-assist-card:hover { transform: translateY(-10px); box-shadow: 0 34px 64px -22px rgba(10,26,47,.38); }
+.rx-assist-card:hover::before { transform: scaleX(1); }
+.rx-assist-card .hw-assist-icon { width: 60px; height: 60px; display: grid; place-items: center;
+    border-radius: 18px; color: #fff; font-size: 1.4rem; margin-bottom: 1.3rem;
+    background: linear-gradient(135deg, #f05252, #b92e2e); box-shadow: 0 14px 28px -10px rgba(228,67,67,.5);
+    transition: transform .4s var(--rx-ease); }
+.rx-assist-card:hover .hw-assist-icon { transform: rotate(-10deg) scale(1.08); }
+.rx-assist-card h3 { font-family: var(--rx-display); font-weight: 800; color: var(--rx-navy);
+    font-size: 1.12rem; margin-bottom: .7rem; }
+.rx-assist-card p { color: var(--rx-muted); line-height: 1.7; font-size: .94rem; margin: 0; }
+/* CTA: full-bleed cinematic band */
+.rx-cta.cta-section { position: relative; overflow: hidden; min-height: 420px;
+    display: flex; align-items: center; background: #071423; }
+.rx-cta .cta-img { position: absolute; inset: 0; }
+.rx-cta .cta-img img { width: 100%; height: 100%; object-fit: cover; opacity: .5; }
+.rx-cta .cta-img::after { content: ''; position: absolute; inset: 0;
+    background: linear-gradient(100deg, rgba(7,18,34,.94) 20%, rgba(185,46,46,.45) 75%, rgba(7,18,34,.55)); }
+.rx-cta .about-cta-content { position: relative; z-index: 2; padding: 4.5rem 0; max-width: 640px; }
+.rx-cta .about-cta-content > span { color: var(--rx-cyan); font-family: var(--rx-display);
+    font-size: .74rem; font-weight: 800; letter-spacing: .24em; text-transform: uppercase; }
+.rx-cta .about-cta-content h2 { color: #fff; font-family: var(--rx-display); font-weight: 800;
+    font-size: clamp(1.9rem, 3.4vw, 2.8rem); margin: 1rem 0 1.8rem; }
+.rx-cta .about-cta-actions { display: flex; gap: .9rem; flex-wrap: wrap; }
+
+/* Company brand list */
+.rx-brand { background: #fff; }
+.rx-brand-list { list-style: none; padding: 0; margin: 2.4rem 0 0; display: grid; gap: 1rem; }
+.rx-brand-list li { position: relative; padding: 1.25rem 1.4rem 1.25rem 3.4rem;
+    background: var(--rx-paper); border: 1px solid rgba(13,42,67,.1); border-radius: 16px;
+    color: var(--rx-text); line-height: 1.7;
+    transition: transform .35s var(--rx-ease), box-shadow .35s var(--rx-ease), background .35s; }
+.rx-brand-list li::before { content: ''; position: absolute; left: 1.4rem; top: 1.55rem;
+    width: 12px; height: 12px; border-radius: 50%; background: var(--rx-red);
+    box-shadow: 0 0 0 5px rgba(228,67,67,.16); transition: box-shadow .3s; }
+.rx-brand-list li:hover { transform: translateX(10px); background: #fff;
+    box-shadow: 0 18px 38px -18px rgba(10,26,47,.3); }
+.rx-brand-list li:hover::before { box-shadow: 0 0 0 8px rgba(228,67,67,.16), 0 0 16px var(--rx-red); }
+
+/* Values */
+.rx-values { background: linear-gradient(180deg, #f5f8fc, #eef3f9); }
+.rx-value-card { height: 100%; background: #fff; border-radius: var(--rx-radius);
+    border: 1px solid rgba(13,42,67,.09); padding: 2.2rem 1.9rem; text-align: center;
+    box-shadow: 0 18px 44px -22px rgba(10,26,47,.25);
+    transition: transform .4s var(--rx-ease), box-shadow .4s var(--rx-ease); }
+.rx-value-card:hover { transform: translateY(-10px); box-shadow: 0 34px 64px -22px rgba(10,26,47,.38); }
+.rx-value-card .value-icon { width: 70px; height: 70px; margin: 0 auto 1.3rem; display: grid;
+    place-items: center; border-radius: 22px; color: #fff; font-size: 1.6rem;
+    background: linear-gradient(135deg, #14304a, var(--rx-navy));
+    box-shadow: 0 16px 30px -10px rgba(10,26,47,.5); transition: transform .4s var(--rx-ease); }
+.rx-value-card:hover .value-icon { transform: rotate(-10deg) scale(1.08);
+    background: linear-gradient(135deg, #f05252, #b92e2e); }
+.rx-value-card h3 { font-family: var(--rx-display); font-weight: 800; color: var(--rx-navy); margin-bottom: .7rem; }
+.rx-value-card p { color: var(--rx-muted); line-height: 1.75; font-size: .95rem; margin: 0; }
+
+/* Approach + mission/vision */
+.rx-approach { background: #fff; }
+.rx-approach .approach-img { min-height: 380px; }
+.rx-approach .approach-content p { color: var(--rx-muted); line-height: 1.85; }
+.rx-purpose { background: #0a1a2f; position: relative; overflow: hidden; }
+.rx-purpose-card { position: relative; height: 100%; border-radius: var(--rx-radius); padding: 2.6rem 2.3rem;
+    background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.13);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); overflow: hidden;
+    transition: transform .4s var(--rx-ease), border-color .4s; }
+.rx-purpose-card:hover { transform: translateY(-8px); border-color: rgba(87,217,255,.4); }
+.rx-purpose-card .purpose-icon { width: 62px; height: 62px; display: grid; place-items: center;
+    border-radius: 18px; font-size: 1.5rem; margin-bottom: 1.4rem; color: #fff;
+    background: linear-gradient(135deg, #f05252, #b92e2e); box-shadow: 0 14px 28px -10px rgba(228,67,67,.5); }
+.rx-purpose-card h2 { color: #fff; }
+.rx-purpose-card p { color: rgba(234,242,250,.78); line-height: 1.8; margin: 0; }
+.rx-purpose-card--dark { background: linear-gradient(135deg, rgba(228,67,67,.16), rgba(228,67,67,.05));
+    border-color: rgba(228,67,67,.35); }
+/*@@END*/
+
+

@@ -27,7 +27,7 @@ if (!isset($pageKeywords)) {
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <meta name="google-site-verification" content="oCRSEek5ikhd4ugWzOGZ8MrSjy3Zq-MgoOk2zngFqzI" />
 
@@ -143,6 +143,7 @@ if (!isset($pageKeywords)) {
     <link rel="stylesheet" href="<?php echo CSS_PATH; ?>responsive-seo.css?v=<?php echo assetVersion('assets/css/responsive-seo.css'); ?>">
     <link rel="stylesheet" href="<?php echo CSS_PATH; ?>ai-concierge.css?v=<?php echo assetVersion('assets/css/ai-concierge.css'); ?>">
     <link rel="stylesheet" href="<?php echo CSS_PATH; ?>footer-modern.css?v=<?php echo assetVersion('assets/css/footer-modern.css'); ?>">
+    <link rel="stylesheet" href="<?php echo CSS_PATH; ?>redesign-system.css?v=<?php echo assetVersion('assets/css/redesign-system.css'); ?>">
 
     <script>
         var weburl = "<?php echo SITE_URL; ?>";
@@ -430,48 +431,6 @@ if (!isset($pageKeywords)) {
             transform: scaleX(1);
         }
 
-        /* Emergency contact card */
-        #header .navbar-end {
-            padding: .6rem 1.3rem;
-            border: 0;
-            border-radius: 14px;
-            background: linear-gradient(135deg, #e44343 0%, #c62f2f 100%);
-            box-shadow: 0 10px 24px rgba(228, 67, 67, .32);
-            text-align: left;
-            transition: transform .25s ease, box-shadow .25s ease;
-        }
-
-        #header .navbar-end:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 14px 30px rgba(228, 67, 67, .42);
-        }
-
-        #header .navbar-end span {
-            display: block;
-            margin-bottom: .15rem;
-            color: rgba(255, 255, 255, .85);
-            font-size: .6rem;
-            font-weight: 800;
-            letter-spacing: .18em;
-            text-transform: uppercase;
-        }
-
-        #header .navbar-end .btn-text {
-            color: #fff;
-            font-size: 1.08rem;
-            letter-spacing: .02em;
-            text-transform: none;
-        }
-
-        #header .navbar-end .btn-text i {
-            color: #fff;
-            font-size: 1.05rem;
-        }
-
-        #header .navbar-end .btn-text:hover {
-            color: #fff;
-            text-decoration: none;
-        }
         /* Sticky navbar: topbar scrolls away, nav stays fixed on every page.
            body{overflow-x:hidden} in the base stylesheet creates a scroll
            container that breaks sticky -- overflow-x:clip clips the same way
@@ -539,6 +498,7 @@ if (!isset($pageKeywords)) {
     // Include global schema markup
     include __DIR__ . '/schema.php';
     ?>
+    <link rel="stylesheet" href="<?php echo CSS_PATH; ?>tech-public.css?v=<?php echo assetVersion('assets/css/tech-public.css'); ?>">
 </head>
 
 <body>

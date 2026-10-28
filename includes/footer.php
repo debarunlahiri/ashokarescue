@@ -258,7 +258,14 @@
     document.addEventListener('DOMContentLoaded', function () {
         // Wait for Swiper to be available
         if (typeof Swiper !== 'undefined') {
-            var swiper = new Swiper(".serviceSwiper", {
+            // Safe init: skip selectors with no matching element, so a page
+            // can drop a carousel without breaking this shared script.
+            var initSwiper = function (selector, params) {
+                var el = typeof selector === 'string' ? document.querySelector(selector) : selector;
+                if (!el) return null;
+                return new Swiper(el, params);
+            };
+            var swiper = initSwiper(".serviceSwiper", {
                 slidesPerView: "auto",
                 spaceBetween: 10,
                 loop: true,
@@ -282,7 +289,7 @@
                 },
             });
 
-            var swiper2 = new Swiper(".innerSwiper", {
+            var swiper2 = initSwiper(".innerSwiper", {
                 spaceBetween: 50,
                 loop: true,
                 autoplay: {
@@ -291,7 +298,7 @@
                 },
             });
 
-            var swiperStory = new Swiper(".storySwiper", {
+            var swiperStory = initSwiper(".storySwiper", {
                 slidesPerView: 1,
                 spaceBetween: 30,
                 loop: true,
@@ -306,12 +313,12 @@
                     clickable: true,
                 },
                 navigation: {
-                    nextEl: ".swiper-button-next",
-                    prevEl: ".swiper-button-prev",
+                    nextEl: ".journal-next",
+                    prevEl: ".journal-prev",
                 },
             });
 
-            var swiperTestimonial = new Swiper(".testimonialSwiper", {
+            var swiperTestimonial = initSwiper(".testimonialSwiper", {
                 slidesPerView: 1,
                 spaceBetween: 30,
                 loop: true,
@@ -368,6 +375,7 @@
 <?php require __DIR__ . '/ai-concierge.php'; ?>
 <script src="<?php echo JS_PATH; ?>ai-concierge.js?v=<?php echo assetVersion('assets/js/ai-concierge.js'); ?>" defer></script>
 <script src="<?php echo JS_PATH; ?>flipboard.js?v=<?php echo assetVersion('assets/js/flipboard.js'); ?>" defer></script>
+<script src="<?php echo JS_PATH; ?>redesign.js?v=<?php echo assetVersion('assets/js/redesign.js'); ?>" defer></script>
 
 <?php if (isset($additionalScripts))
     echo $additionalScripts; ?>

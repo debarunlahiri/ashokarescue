@@ -1,0 +1,391 @@
+/* ========================================
+   Mobile Responsiveness & SEO Improvements
+   ======================================== */
+
+.site-page-transition {
+    position: fixed;
+    inset: 0;
+    z-index: 2147483646;
+    display: grid;
+    place-items: center;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    background: rgba(255, 255, 255, .98);
+    transition: opacity 220ms ease, visibility 220ms ease;
+}
+
+.site-page-transition--entering,
+.site-page-transition--leaving {
+    visibility: visible;
+    opacity: 1;
+}
+
+.site-page-transition__content {
+    display: grid;
+    justify-items: center;
+    gap: 10px;
+    color: #172331;
+}
+
+.site-page-transition__icon {
+    display: grid;
+    width: 46px;
+    height: 46px;
+    place-items: center;
+    border-radius: 50%;
+    color: #fff;
+    background: #ff5722;
+    box-shadow: 0 10px 26px rgba(255, 87, 34, .22);
+    transform: translateX(-12px);
+    animation: site-transition-flight 900ms ease-in-out infinite alternate;
+}
+
+.site-page-transition__label {
+    font-family: "Montserrat", sans-serif;
+    font-size: .8rem;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.site-page-transition__line {
+    width: 90px;
+    height: 3px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #e8ecef;
+}
+
+.site-page-transition__line i {
+    display: block;
+    width: 45%;
+    height: 100%;
+    border-radius: inherit;
+    background: #ff5722;
+    animation: site-transition-progress 850ms ease-in-out infinite;
+}
+
+@keyframes site-transition-flight {
+    to { transform: translateX(12px); }
+}
+
+@keyframes site-transition-progress {
+    from { transform: translateX(-110%); }
+    to { transform: translateX(225%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .site-page-transition {
+        display: none;
+    }
+}
+
+/* Services Dropdown - Better SEO Layout */
+.services-dropdown {
+    min-width: 280px;
+}
+
+@media (min-width: 992px) {
+    .services-dropdown {
+        min-width: 350px;
+        max-height: 500px;
+        overflow-y: auto;
+    }
+}
+
+/* WhatsApp Button - Responsive Positioning */
+.whatsapp-opne-icon {
+    width: 60px;
+    border-radius: 100%;
+    overflow: hidden;
+    position: fixed;
+    bottom: 25%;
+    right: 20px;
+    box-shadow: 0 3px 4px -2px rgba(0, 0, 0, 0.5);
+    z-index: 999999;
+    display: block;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.2s ease;
+}
+
+.whatsapp-opne-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 8px -2px rgba(0, 0, 0, 0.7);
+}
+
+/* Mobile Responsiveness - Tablets (768px and below) */
+@media (max-width: 768px) {
+    /* Header adjustments */
+    .navbar-brand img {
+        max-width: 150px;
+        height: auto;
+    }
+
+    .navbar-end {
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .navbar-end span {
+        display: block;
+        font-size: 12px;
+    }
+
+    .navbar-end .btn-text {
+        font-size: 14px;
+    }
+
+    /* Hero section */
+    .hero-title {
+        font-size: 28px !important;
+        line-height: 1.3;
+    }
+
+    .hero-content h3 {
+        font-size: 20px !important;
+    }
+
+    .hero-content p {
+        font-size: 14px;
+    }
+
+    /* Section titles */
+    .section-title {
+        font-size: 24px !important;
+    }
+
+    /* Service cards */
+    .service-carousel .card {
+        margin-bottom: 20px;
+    }
+
+    /* Forms */
+    .form-control,
+    .form-select {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    /* Buttons */
+    .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    /* Footer */
+    .footer-widget {
+        margin-bottom: 30px;
+    }
+
+    .footer-title {
+        font-size: 18px;
+    }
+
+    /* WhatsApp button on mobile */
+    .whatsapp-opne-icon {
+        width: 50px;
+        bottom: 80px;
+        right: 15px;
+    }
+}
+
+/* Mobile Responsiveness - Small Mobile (576px and below) */
+@media (max-width: 576px) {
+    /* Header */
+    .navbar-brand img {
+        max-width: 120px;
+    }
+
+    .topbar-content p {
+        font-size: 12px;
+    }
+
+    /* Hero section */
+    .hero-title {
+        font-size: 24px !important;
+    }
+
+    .hero-content h3 {
+        font-size: 18px !important;
+    }
+
+    .hero-content p {
+        font-size: 13px;
+        padding: 0 10px;
+    }
+
+    /* Section padding */
+    .sec-py {
+        padding: 40px 0;
+    }
+
+    .section-title {
+        font-size: 20px !important;
+        margin-bottom: 15px;
+    }
+
+    .section-header p {
+        font-size: 14px;
+    }
+
+    /* Cards and content boxes */
+    .card-body {
+        padding: 15px;
+    }
+
+    .card-title,
+    .card h3 {
+        font-size: 18px !important;
+    }
+
+    /* Story section */
+    .story-img {
+        margin-bottom: 15px;
+    }
+
+    /* Testimonials */
+    .testimonial-carousel .card {
+        padding: 20px;
+    }
+
+    /* Footer */
+    .footer-contact-item {
+        font-size: 13px;
+    }
+
+    .copyright-list {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .copyright-list li {
+        margin-bottom: 10px;
+    }
+
+    /* WhatsApp button */
+    .whatsapp-opne-icon {
+        width: 45px;
+        bottom: 70px;
+        right: 10px;
+    }
+}
+
+/* Touch-friendly elements */
+@media (hover: none) and (pointer: coarse) {
+    /* Ensure minimum touch target size of 44x44px */
+    .btn,
+    .nav-link,
+    .dropdown-item,
+    .form-control,
+    .form-select {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+
+    .dropdown-item {
+        padding: 12px 20px;
+    }
+}
+
+/* Prevent horizontal scroll on mobile */
+body {
+    overflow-x: hidden;
+}
+
+.container-fluid {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Improve readability on mobile */
+@media (max-width: 768px) {
+    p,
+    li,
+    span {
+        line-height: 1.6;
+    }
+
+    /* Ensure images don't overflow */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Fix table overflow */
+    table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* Accordion improvements for mobile */
+@media (max-width: 768px) {
+    .accordion-button {
+        font-size: 14px;
+        padding: 12px 15px;
+    }
+
+    .accordion-body {
+        font-size: 13px;
+        padding: 15px;
+    }
+}
+
+/* Navigation improvements */
+@media (max-width: 991px) {
+    .navbar-collapse {
+        max-height: 400px;
+        overflow-y: auto;
+    }
+
+    .nav-item {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .dropdown-menu {
+        border: none;
+        box-shadow: none;
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+}
+
+/* Landscape mobile optimization */
+@media (max-width: 896px) and (orientation: landscape) {
+    .hero-section {
+        min-height: auto;
+        padding: 60px 0;
+    }
+
+    .navbar-collapse {
+        max-height: 250px;
+    }
+}
+
+/* Very small devices (320px) */
+@media (max-width: 320px) {
+    .hero-title {
+        font-size: 20px !important;
+    }
+
+    .section-title {
+        font-size: 18px !important;
+    }
+
+    .btn {
+        font-size: 12px;
+        padding: 8px 15px;
+    }
+}
+
+/* Print styles */
+@media print {
+    .whatsapp-opne-icon,
+    .scroll-top,
+    .navbar,
+    .topbar-section,
+    footer {
+        display: none !important;
+    }
+}

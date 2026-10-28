@@ -10,7 +10,8 @@ $pageKeywords = 'Air Ambulance FAQs, Medical Transport Questions, Commercial Str
 // Auto cache-busting: version string follows the file modification time,
 // so browsers always fetch fresh CSS after an edit (no manual version bumps).
 $additionalStyles = '<link rel="stylesheet" href="assets/css/home-modern.css?v=' . filemtime(__DIR__ . '/assets/css/home-modern.css') . '">'
-    . '<link rel="stylesheet" href="assets/css/pages-modern.css?v=' . filemtime(__DIR__ . '/assets/css/pages-modern.css') . '">';
+    . '<link rel="stylesheet" href="assets/css/pages-modern.css?v=' . filemtime(__DIR__ . '/assets/css/pages-modern.css') . '">'
+    . '<link rel="stylesheet" href="assets/css/rx-pages.css?v=' . filemtime(__DIR__ . '/assets/css/rx-pages.css') . '">';
 
 // FAQ Schema markup
 $faqSchemaJson = file_get_contents(__DIR__ . '/includes/faq-schema.json');
@@ -21,13 +22,15 @@ include __DIR__ . '/includes/header.php';
 ?>
 
 <!-- Banner Section -->
-<section class="banner-section about-banner banner-section-bg faq-hero">
+<section class="banner-section about-banner banner-section-bg faq-hero rx-faq-hero rx-dark">
+    <span class="rx-orb rx-orb--red" aria-hidden="true"></span>
+    <span class="rx-orb rx-orb--cyan" aria-hidden="true"></span>
     <div class="banner-bg">
         <img src="<?php echo IMG_PATH; ?>about-banner.jpg" class="img-fluid" alt="">
     </div>
     <div class="container">
         <div class="banner-content">
-            <span class="page-kicker"><i class="fa-solid fa-circle-question"></i> Clear answers, when you need them</span>
+            <span class="page-kicker" data-rx><i class="fa-solid fa-circle-question"></i> Clear answers, when you need them</span>
             <h1 class="banner-title" data-aos="fade-up" data-aos-duration="1500">What families<br><span>ask us.</span></h1>
             <p data-aos="fade-up" data-aos-duration="2500">Practical guidance about air ambulances, medical escorts, commercial stretchers, costs, and patient travel.</p>
         </div>
@@ -36,13 +39,13 @@ include __DIR__ . '/includes/header.php';
 <!--/Banner Section -->
 
 <!-- FAQs Section -->
-<section class="faq-page-section sec-py">
+<section class="faq-page-section rx-faq-sec rx-sec-py">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-4">
-                <div class="faq-page-intro">
-                    <span class="page-section-kicker">General information</span>
-                    <h2 class="section-title">Answers for patients and families</h2>
+                <div class="faq-page-intro rx-faq-intro" data-rx="left">
+                    <p class="rx-kicker rx-kicker--light">General information</p>
+                    <h2>Answers for patients and families</h2>
                     <p>Browse the most common questions about arranging medical transport. For advice about a specific patient, speak directly with our coordination team.</p>
                     <a href="tel:<?php echo str_replace(' ', '', EMERGENCY_PHONE); ?>" class="faq-support-link">
                         <i class="fa-solid fa-phone"></i>
@@ -53,7 +56,7 @@ include __DIR__ . '/includes/header.php';
 
             <!-- FAQs Accordion -->
             <div class="col-lg-8">
-            <div class="accordion faq-page-accordion" id="accordionGeneral">
+            <div class="accordion faq-page-accordion rx-faq-acc" id="accordionGeneral" data-rx="right">
                 <!-- FAQ 1 -->
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="faqs_heading_1">
@@ -302,14 +305,14 @@ include __DIR__ . '/includes/header.php';
     </div>
 </section>
 
-<section class="faq-contact-cta">
+<section class="faq-contact-cta rx-faq-cta">
     <div class="container">
-        <div class="faq-contact-inner">
+        <div class="faq-contact-inner" data-rx>
             <div>
                 <span>Still need help?</span>
                 <h2>Discuss your patient’s journey with our medical team.</h2>
             </div>
-            <a href="<?php echo SITE_URL; ?>/contact" class="btn">Contact Ashoka Rescue <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="<?php echo SITE_URL; ?>/contact" class="rx-btn rx-btn--ghost" data-magnetic>Contact Ashoka Rescue <i class="fa-solid fa-arrow-right"></i></a>
         </div>
     </div>
 </section>

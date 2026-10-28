@@ -29,6 +29,7 @@ if (!$service) {
 }
 
 // Include header
+$additionalStyles = '<link rel="stylesheet" href="assets/css/rx-services.css?v=' . filemtime(__DIR__ . '/assets/css/rx-services.css') . '">';
 include __DIR__ . '/includes/header.php';
 $data = getServiceContent($service['id']);
 
@@ -65,12 +66,15 @@ $data = array_merge($defaults, $data);
 ?>
 
 <!-- Banner Section -->
-<section class="banner-section sec-py">
+<section class="banner-section rx-svc-banner rx-dark">
+    <span class="rx-orb rx-orb--red" aria-hidden="true"></span>
+    <span class="rx-orb rx-orb--cyan" aria-hidden="true"></span>
     <div class="container">
         <div class="banner-content">
             <div class="row align-items-end">
                 <div class="col-lg-5">
-                    <h1 class="banner-title" data-aos="fade-up" data-aos-duration="1500">
+                    <p class="rx-kicker rx-kicker--light" data-rx>Service brief</p>
+                    <h1 class="banner-title" data-rx style="--rx-d:.08s">
                         <?php echo $data['title']; ?>
                     </h1>
                 </div>
@@ -86,24 +90,25 @@ $data = array_merge($defaults, $data);
 <!--/Banner Section -->
 
 <!-- About Section -->
-<section class="about-section sec-py">
+<section class="about-section rx-svc-about rx-sec-py">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-5">
-                <div class="about-img" data-aos="fade-right" data-aos-duration="1000">
-                    <img src="<?php echo SITE_URL . $service['banner']; ?>" class="img-fluid" alt="">
+                <div class="about-img rx-frame rx-ticks" data-rx="zoom">
+                    <img src="<?php echo SITE_URL . $service['banner']; ?>" class="img-fluid" alt="<?php echo htmlspecialchars($service['title']); ?>">
                 </div>
             </div>
             <div class="col-lg-7">
-                <div class="about-content" data-aos="fade-up" data-aos-duration="1500">
-                    <h2 class="section-title">
+                <div class="about-content" data-rx="left">
+                    <p class="rx-kicker">Service brief</p>
+                    <h2 class="rx-sec-title">
                         <?php echo $data['page_name_without_break']; ?>
                     </h2>
                     <p>
                         <?php echo $data['main_content']; ?>
                     </p>
                     <div class="button-group mt-3 mt-lg-4">
-                        <a href="#" class="btn btn-solid btn-md rounded">Know More</a>
+                        <a href="#" class="btn btn-solid btn-md rounded rx-btn rx-btn--red" data-magnetic>Know More <i class="fa-solid fa-arrow-right"></i></a>
                         <a href="tel:<?php echo str_replace(' ', '', $data['mobile_no']); ?>"
                             class="text-secondary title-font fs-20 fw-800 ms-3">
                             <i class="bi bi-telephone me-2"></i>
@@ -118,8 +123,8 @@ $data = array_merge($defaults, $data);
 <!--/About Section -->
 
 <!-- CTA Section -->
-<section class="cta-section">
-    <div class="cta-bg-img" data-aos="zoom-in" data-aos-duration="1000">
+<section class="cta-section rx-svc-cta">
+    <div class="cta-bg-img" data-rx="zoom">
         <img src="<?php echo SITE_URL . $data['middle_banner']; ?>" class="img-fluid" alt="">
     </div>
     <div class="cta-section-bg">
@@ -166,12 +171,13 @@ $data = array_merge($defaults, $data);
 <!--/CTA Section -->
 
 <!-- Emergency Section -->
-<section class="emergency-section sec-py">
+<section class="emergency-section rx-svc-faq rx-sec-py">
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
                 <div class="section-header">
-                    <h2 class="section-title text-capitalize" data-aos="fade-right" data-aos-duration="1000">
+                    <p class="rx-kicker" data-rx>Good to know</p>
+                    <h2 class="rx-sec-title text-capitalize" data-rx style="--rx-d:.08s">
                         <?php echo $data['faq_tag_line']; ?>
                     </h2>
                 </div>
@@ -212,11 +218,11 @@ $data = array_merge($defaults, $data);
 <!--/Emergency Section -->
 
 <!-- Featured Section -->
-<section class="featured-section sec-pb">
+<section class="featured-section rx-svc-gallery rx-sec-py">
     <div class="container">
         <div class="row">
             <div class="col-lg-4">
-                <div class="card" data-aos="fade-right" data-aos-duration="1500">
+                <div class="card rx-g-card" data-rx="zoom">
                     <div class="img-box">
                         <img src="<?php echo SITE_URL . $data['footer_image_1']; ?>" class="img-fluid" alt="">
                     </div>
@@ -224,7 +230,7 @@ $data = array_merge($defaults, $data);
                 <!--/card -->
             </div>
             <div class="col-lg-4">
-                <div class="card" data-aos="fade-down" data-aos-duration="2500">
+                <div class="card rx-g-card" data-rx="zoom" style="--rx-d:.12s">
                     <div class="img-box">
                         <img src="<?php echo SITE_URL . $data['footer_image_2']; ?>" class="img-fluid" alt="">
                     </div>
@@ -232,7 +238,7 @@ $data = array_merge($defaults, $data);
                 <!--/card -->
             </div>
             <div class="col-lg-4">
-                <div class="card" data-aos="fade-left" data-aos-duration="1000">
+                <div class="card rx-g-card" data-rx="zoom" style="--rx-d:.24s">
                     <div class="img-box">
                         <img src="<?php echo SITE_URL . $data['footer_image_3']; ?>" class="img-fluid" alt="">
                     </div>

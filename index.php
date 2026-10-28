@@ -10,7 +10,8 @@ $pageKeywords = 'Air Ambulance India, Medical Evacuation, Critical Care Transpor
 // Auto cache-busting: version string follows the file modification time,
 // so browsers always fetch fresh CSS after an edit (no manual version bumps).
 $additionalStyles = '<link rel="stylesheet" href="assets/css/home-modern.css?v=' . filemtime(__DIR__ . '/assets/css/home-modern.css') . '">'
-    . '<link rel="stylesheet" href="assets/css/hero-slider.css?v=' . filemtime(__DIR__ . '/assets/css/hero-slider.css') . '">';
+    . '<link rel="stylesheet" href="assets/css/hero-slider.css?v=' . filemtime(__DIR__ . '/assets/css/hero-slider.css') . '">'
+    . '<link rel="stylesheet" href="assets/css/rx-home.css?v=' . filemtime(__DIR__ . '/assets/css/rx-home.css') . '">';
 
 // Schema markup for home page
 $schemaMarkup = <<<SCHEMA
@@ -261,7 +262,7 @@ $additionalScripts = <<<'SCRIPTS'
             return;
         }
         var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        new Swiper('.heroSwiper', {
+        var heroSwiper = new Swiper('.heroSwiper', {
             effect: 'fade',
             fadeEffect: { crossFade: true },
             speed: 1000,
@@ -271,16 +272,26 @@ $additionalScripts = <<<'SCRIPTS'
                 disableOnInteraction: false,
                 pauseOnMouseEnter: true
             },
-            pagination: {
-                el: '.hero-pagination',
-                clickable: true
-            },
-            navigation: {
-                nextEl: '.hero-nav-next',
-                prevEl: '.hero-nav-prev'
-            },
             keyboard: { enabled: true },
-            a11y: { enabled: true }
+            a11y: { enabled: true },
+            on: {
+                slideChange: function () {
+                    var idx = this.realIndex;
+                    document.querySelectorAll('.rx-copy-pane').forEach(function (pane, pi) {
+                        pane.classList.toggle('active', pi === idx);
+                    });
+                    document.querySelectorAll('.rx-thumbs button').forEach(function (btn, bi) {
+                        btn.classList.toggle('active', bi === idx);
+                    });
+                }
+            }
+        });
+
+        // Command-deck thumbnails drive the hero viewport
+        document.querySelectorAll('.rx-thumbs button').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                heroSwiper.slideToLoop(parseInt(btn.getAttribute('data-goto'), 10));
+            });
         });
 
         // How It Works — vertical stepper tab switching (desktop)
@@ -330,189 +341,171 @@ $additionalScripts = <<<'SCRIPTS'
 SCRIPTS;
 ?>
 
-<!-- Hero Section -->
-<section class="hero-section hero-slider">
-    <div class="swiper heroSwiper">
-        <div class="swiper-wrapper">
-            <?php foreach ($heroSlides as $slideIndex => $slide): ?>
-                <?php $titleTag = $slideIndex === 0 ? 'h1' : 'h2'; ?>
-                <div class="swiper-slide">
-                    <div class="hero-bg">
-                        <img src="<?php echo $slide['image']; ?>" class="img-fluid"
-                            alt="<?php echo htmlspecialchars($slide['alt']); ?>"
-                            width="1920" height="1080"
-                            <?php echo $slideIndex === 0 ? 'fetchpriority="high" decoding="async"' : 'loading="lazy" decoding="async"'; ?>>
+<!-- Hero Section: command deck -->
+<section class="hero-section hero-slider rx-hero rx-command">
+    <span class="rx-orb rx-orb--red" aria-hidden="true"></span>
+    <span class="rx-orb rx-orb--cyan" aria-hidden="true"></span>
+    <div class="rx-ghostword" aria-hidden="true">Rescue</div>
+    <div class="container rx-command-grid">
+        <div class="rx-command-copy">
+            <div class="rx-copy-panes">
+                <?php foreach ($heroSlides as $slideIndex => $slide): ?>
+                    <?php $titleTag = $slideIndex === 0 ? 'h1' : 'h2'; ?>
+                    <div class="rx-copy-pane<?php echo $slideIndex === 0 ? ' active' : ''; ?>">
+                        <span class="hero-kicker"><i class="fa-solid fa-circle-check"></i> <?php echo htmlspecialchars($slide['kicker']); ?></span>
+                        <<?php echo $titleTag; ?> class="hero-title" data-rx-words><?php echo $slide['title']; ?></<?php echo $titleTag; ?>>
+                        <p><?php echo htmlspecialchars($slide['text']); ?></p>
                     </div>
-                    <div class="hero-content">
-                        <div class="container">
-                            <div class="hero-copy">
-                                <span class="hero-kicker"><i class="fa-solid fa-circle-check"></i> <?php echo htmlspecialchars($slide['kicker']); ?></span>
-                                <<?php echo $titleTag; ?> class="hero-title"><?php echo $slide['title']; ?></<?php echo $titleTag; ?>>
-                                <p><?php echo htmlspecialchars($slide['text']); ?></p>
-                                <div class="hero-actions">
-                                    <a href="tel:<?php echo str_replace(' ', '', EMERGENCY_PHONE); ?>" class="btn hero-primary">
-                                        <i class="fa-solid fa-phone"></i> Call emergency desk
-                                    </a>
-                                    <a href="<?php echo SITE_URL; ?>/contact" class="btn hero-secondary">Request assistance <i class="fa-solid fa-arrow-right"></i></a>
-                                </div>
-                                <div class="hero-meta" aria-label="Service highlights">
-                                    <div><strong>24/7</strong><span>Response team</span></div>
-                                    <div><strong>20+</strong><span>Years of care</span></div>
-                                    <div><strong>Global</strong><span>Coordination</span></div>
+                <?php endforeach; ?>
+            </div>
+            <div class="hero-actions">
+                <a href="tel:<?php echo str_replace(' ', '', EMERGENCY_PHONE); ?>" class="btn hero-primary rx-btn rx-btn--red" data-magnetic>
+                    <i class="fa-solid fa-phone"></i> Call emergency desk
+                </a>
+                <a href="<?php echo SITE_URL; ?>/contact" class="btn hero-secondary rx-btn rx-btn--ghost" data-magnetic>Request assistance <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="rx-dispatch" aria-label="Dispatch status">
+                <span class="rx-live" aria-hidden="true"></span>
+                <span><strong>Dispatch active</strong> — medical crews on standby, 24/7</span>
+            </div>
+            <div class="hero-meta" aria-label="Service highlights">
+                <div><strong>24/7</strong><span>Response team</span></div>
+                <div><strong>20+</strong><span>Years of care</span></div>
+                <div><strong>Global</strong><span>Coordination</span></div>
+            </div>
+        </div>
+        <div class="rx-command-visual" data-rx="left">
+            <div class="rx-viewport rx-ticks">
+                <div class="swiper heroSwiper">
+                    <div class="swiper-wrapper">
+                        <?php foreach ($heroSlides as $slideIndex => $slide): ?>
+                            <div class="swiper-slide">
+                                <div class="rx-viewport-img">
+                                    <img src="<?php echo $slide['image']; ?>" class="img-fluid"
+                                        alt="<?php echo htmlspecialchars($slide['alt']); ?>"
+                                        width="1920" height="1080"
+                                        <?php echo $slideIndex === 0 ? 'fetchpriority="high" decoding="async"' : 'loading="lazy" decoding="async"'; ?>>
                                 </div>
                             </div>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
-            <?php endforeach; ?>
-        </div>
-    </div>
-    <div class="hero-slider-controls">
-        <div class="container hero-slider-controls__inner">
-            <div class="hero-pagination swiper-pagination"></div>
-            <div class="hero-nav">
-                <div class="swiper-button-prev hero-nav-prev"></div>
-                <div class="swiper-button-next hero-nav-next"></div>
+                <div class="rx-viewport-hud" aria-hidden="true"><span class="rx-live"></span> Fleet feed</div>
+            </div>
+            <div class="rx-thumbs" role="group" aria-label="Choose hero story">
+                <?php foreach ($heroSlides as $slideIndex => $slide): ?>
+                    <button type="button" data-goto="<?php echo $slideIndex; ?>" class="<?php echo $slideIndex === 0 ? 'active' : ''; ?>" aria-label="Show: <?php echo htmlspecialchars($slide['kicker']); ?>">
+                        <img src="<?php echo $slide['image']; ?>" alt="" loading="lazy">
+                    </button>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
+    <div class="rx-scroll-cue" aria-hidden="true"></div>
 </section>
 <!--/Hero Section -->
 
-<section class="trust-strip" aria-label="Ashoka Rescue service assurances">
-    <div class="container">
-        <div class="trust-grid">
-            <div>
-                <div class="trust-row"><i class="fa-solid fa-user-doctor"></i><span><strong>Doctor-led medical escorts</strong>Critical-care doctors, nurses &amp; paramedics</span></div>
-            </div>
-            <div>
-                <div class="trust-row"><i class="fa-solid fa-plane-departure"></i><span><strong>Bedside-to-bedside coordination</strong>Aircraft, clearances &amp; receiving facility</span></div>
-            </div>
-            <div>
-                <div class="trust-row"><i class="fa-solid fa-shield-heart"></i><span><strong>Fit-to-fly assessment</strong>Medical clearance before every transfer</span></div>
-            </div>
+<section class="rx-ticker-band" aria-label="Ashoka Rescue service assurances">
+    <div class="rx-ticker" data-ticker>
+        <div class="rx-ticker-track">
+            <span class="rx-ticker-item"><i class="fa-solid fa-user-doctor"></i><strong>Doctor-led medical escorts</strong> Critical-care doctors, nurses &amp; paramedics</span>
+            <span class="rx-ticker-dot" aria-hidden="true"></span>
+            <span class="rx-ticker-item"><i class="fa-solid fa-plane-departure"></i><strong>Bedside-to-bedside coordination</strong> Aircraft, clearances &amp; receiving facility</span>
+            <span class="rx-ticker-dot" aria-hidden="true"></span>
+            <span class="rx-ticker-item"><i class="fa-solid fa-shield-heart"></i><strong>Fit-to-fly assessment</strong> Medical clearance before every transfer</span>
+            <span class="rx-ticker-dot" aria-hidden="true"></span>
+            <span class="rx-ticker-item"><i class="fa-solid fa-phone-volume"></i><strong>24/7 emergency desk</strong> <?php echo EMERGENCY_PHONE; ?></span>
+            <span class="rx-ticker-dot" aria-hidden="true"></span>
         </div>
     </div>
 </section>
 
-<!-- Service Section -->
-<section class="service-section sec-py">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="section-header text-center">
-                    <p class="tech-kicker tech-kicker--center">Fleet &amp; capability</p>
-                    <h2 class="section-title">Medical Transport Services</h2>
-                    <p>Charter air ambulance, commercial airline stretcher services, and ALS/BLS ground ambulances —
-                        matched to patient acuity, with ICU-configured equipment and doctor-led medical escorts.</p>
-                </div>
-            </div>
+<!-- Services: expandable editorial directory -->
+<section class="service-section transport-directory rx-sec-py">
+    <div class="container transport-directory-layout">
+        <div class="transport-directory-intro">
+            <p class="rx-kicker">Fleet &amp; capability</p>
+            <h2 class="rx-sec-title">Medical Transport Services</h2>
+            <p class="rx-lead">Charter air ambulance, commercial airline stretcher services, and ALS/BLS ground ambulances — matched to patient acuity, with ICU-configured equipment and doctor-led medical escorts.</p>
+            <a href="<?php echo SITE_URL; ?>/services" class="transport-directory-all">
+                All services <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
         </div>
-        <div class="service-carousel">
-            <div class="swiper serviceSwiper swiper-h">
-                <div class="swiper-wrapper">
-                    <?php foreach ($list as $item): ?>
-                        <div class="swiper-slide">
-                            <div class="card" data-aos="fade-down" data-aos-duration="3000">
-                                <div class="img-box-wrap">
-                                    <div class="swiper innerSwiper swiper-h">
-                                        <div class="swiper-wrapper">
-                                            <div class="swiper-slide">
-                                                <div class="img-box">
-                                                    <img src="<?php echo SITE_URL . $item['banner']; ?>" class="img-fluid"
-                                                        alt="<?php echo htmlspecialchars($item['title']); ?>" loading="lazy"
-                                                        width="800" height="600">
-                                                </div>
-                                            </div>
-                                            <?php
-                                            for ($i = 2; $i <= 5; $i++):
-                                                $imgKey = 'img' . $i;
-                                                if (!empty($item[$imgKey])):
-                                                    ?>
-                                                    <div class="swiper-slide">
-                                                        <div class="img-box">
-                                                            <img src="<?php echo SITE_URL . $item[$imgKey]; ?>" class="img-fluid"
-                                                                alt="<?php echo htmlspecialchars($item['title']); ?>" loading="lazy"
-                                                                width="800" height="600">
-                                                        </div>
-                                                    </div>
-                                                    <?php
-                                                endif;
-                                            endfor;
-                                            ?>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <h3 class="title">
-                                        <?php echo htmlspecialchars($item['title']); ?>
-                                    </h3>
-                                    <p>
-                                        <?php echo $item['content']; ?>
-                                    </p>
-                                </div>
-                                <div class="card-footer">
-                                    <a href="<?php echo getServiceURL($item['slug']); ?>"
-                                        class="btn btn-solid btn-fluid">View service brief <i class="fa-solid fa-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-pagination"></div>
-            </div>
+        <div class="transport-directory-list">
+            <?php foreach ($list as $serviceIndex => $item): ?>
+                <details class="transport-entry" name="transport-services"<?php echo $serviceIndex === 0 ? ' open' : ''; ?>>
+                    <summary class="transport-entry-heading">
+                        <span class="transport-entry-thumbnail">
+                            <img src="<?php echo SITE_URL . $item['banner']; ?>"
+                                alt="" loading="lazy" width="144" height="112">
+                        </span>
+                        <h3><?php echo htmlspecialchars($item['title']); ?></h3>
+                        <span class="transport-entry-toggle" aria-hidden="true">
+                            <i class="fa-solid fa-plus"></i>
+                        </span>
+                    </summary>
+                    <div class="transport-entry-content">
+                        <a class="transport-entry-image" href="<?php echo getServiceURL($item['slug']); ?>"
+                            aria-label="<?php echo htmlspecialchars($item['title']); ?>">
+                            <img src="<?php echo SITE_URL . $item['banner']; ?>"
+                                alt="<?php echo htmlspecialchars($item['title']); ?>"
+                                loading="lazy" width="800" height="600">
+                            <span aria-hidden="true"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                        </a>
+                        <div class="transport-entry-description"><?php echo $item['content']; ?></div>
+                        <a class="transport-entry-link" href="<?php echo getServiceURL($item['slug']); ?>">
+                            View service brief <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </details>
+            <?php endforeach; ?>
         </div>
     </div>
 </section>
 <!--/Service Section -->
 
 <!-- Why Choose Us Section -->
-<section class="wh-us-section">
-    <div class="container-fluid px-0">
-        <div class="row gx-0">
-            <div class="col-lg-6">
-                <div class="wh-img" data-aos="fade-right" data-aos-duration="2000">
-                    <img src="<?php echo IMG_PATH; ?>images-ambulance_others/001 AM.jpg" class="img-fluid" alt="">
+<section class="wh-us-section rx-why rx-sec-py">
+    <div class="container">
+        <div class="rx-overlap">
+            <div class="rx-overlap-media">
+                <div class="rx-frame rx-ticks" data-rx="zoom">
+                    <img src="<?php echo IMG_PATH; ?>images-ambulance_others/001 AM.jpg" class="img-fluid" alt="Ashoka Rescue ambulance on standby">
+                    <div class="rx-float-badge" style="left:1.2rem;bottom:1.2rem;"><strong>20+</strong><small>Years of<br>aeromedical care</small></div>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <div class="wh-content" data-aos="fade-left" data-aos-duration="2000">
-                    <p class="tech-kicker tech-kicker--light">The clinical edge</p>
-                    <h2 class="section-title text-uppercase">Why choose us?</h2>
+            <div class="rx-overlap-card" data-rx="left">
+                <div class="wh-content rx-why-copy">
+                    <p class="rx-kicker" data-rx>The clinical edge</p>
+                    <h2 class="rx-sec-title" data-rx style="--rx-d:.08s">Why choose us?</h2>
                     <span class="sub-title">"We accept, what we can" <br> "What we can, we assure that"</span>
                     <p>Established in 2004, Ashoka Rescue Air Ambulance Services Pvt Ltd provides doctor-led
                         aeromedical and ground medical transport across India and internationally. Every transfer is
                         planned around patient acuity — treating-doctor consultation, fit-to-fly assessment, an
                         ICU-configured aircraft or ALS/BLS road ambulance, and bedside-to-bedside handover.</p>
-                    <ul>
+                    <ul class="rx-spec-list" data-rx style="--rx-d:.15s">
                         <li>
                             <span class="icon"><img src="<?php echo IMG_PATH; ?>icons/star.svg" class="img-fluid"
                                     alt=""></span>
                             20+ years in aeromedical transport
-                            <span class="wh-tag">Est. 2004</span>
                         </li>
                         <li>
                             <span class="icon"><img src="<?php echo IMG_PATH; ?>icons/doc-md.svg" class="img-fluid"
                                     alt=""></span>
                             Treating-doctor &amp; family consultation
-                            <span class="wh-tag">Clinical review</span>
                         </li>
                         <li>
                             <span class="icon"><img src="<?php echo IMG_PATH; ?>icons/medical-care.svg"
                                     class="img-fluid" alt=""></span>
                             ICU-configured equipment
-                            <span class="wh-tag">Equipment</span>
                         </li>
                         <li>
                             <span class="icon"><img src="<?php echo IMG_PATH; ?>icons/experience.svg" class="img-fluid"
                                     alt=""></span>
                             Domestic &amp; international coverage
-                            <span class="wh-tag">Coverage</span>
                         </li>
                     </ul>
-                    <a href="<?php echo SITE_URL; ?>/about" class="btn btn-solid rounded">Know More</a>
+                    <a href="<?php echo SITE_URL; ?>/about" class="rx-btn rx-btn--navy" data-magnetic>Know More <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -521,66 +514,39 @@ SCRIPTS;
 <!--/Why Choose Us Section -->
 
 <!-- Our Service/Story Section -->
-<section class="story-section sec-py">
+<section class="clinical-journal rx-sec-py">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="section-header text-center">
-                    <p class="tech-kicker tech-kicker--center">Case files</p>
-                    <h2 class="section-title" data-aos="fade-down" data-aos-duration="1500">Clinical Transport, End to End</h2>
-                    <p data-aos="fade-down" data-aos-duration="2500">From referral call to handover, our medical team plans
-                        each transfer around the patient's condition — acuity assessment, treating-doctor review, aircraft
-                        or ambulance configuration, and bedside-to-bedside escort, by charter or commercial carrier,
-                        across India and worldwide.</p>
+        <div class="clinical-journal-heading">
+            <div>
+                <p class="rx-kicker">Case files</p>
+                <h2 class="rx-sec-title">Clinical Transport, End to End</h2>
+            </div>
+            <p class="clinical-journal-intro">From referral call to handover, our medical team plans
+                each transfer around the patient's condition — acuity assessment, treating-doctor review, aircraft
+                or ambulance configuration, and bedside-to-bedside escort, by charter or commercial carrier,
+                across India and worldwide.</p>
+        </div>
+        <div class="swiper storySwiper clinical-journal-slider">
+            <div class="clinical-journal-toolbar">
+                <p class="rx-kicker">Case file</p>
+                <div class="clinical-journal-controls">
+                    <button class="journal-prev" type="button" aria-label="Previous story"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i></button>
+                    <button class="journal-next" type="button" aria-label="Next story"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
                 </div>
             </div>
-        </div>
-        <div class="story-carousel">
-            <div class="swiper storySwiper">
-                <div class="swiper-wrapper">
-                    <?php foreach ($ourStories as $story): ?>
-                        <div class="swiper-slide">
-                            <div class="row">
-                                <div class="col-lg-5 order-last order-lg-first">
-                                    <div class="story-content" data-aos="fade-right" data-aos-duration="2000">
-                                        <h2 class="section-title">
-                                            <?php echo htmlspecialchars($story['title']); ?>
-                                        </h2>
-                                        <?php echo $story['content']; ?>
-                                    </div>
-                                </div>
-                                <div class="col-lg-7 order-first order-lg-last">
-                                    <div class="story-img-container">
-                                        <div class="row align-items-center">
-                                            <div class="col-lg-6">
-                                                <div class="story-img first-col-img" data-aos="fade-down"
-                                                    data-aos-duration="1000">
-                                                    <img src="<?php echo SITE_URL . $story['img1']; ?>" class="img-fluid"
-                                                        alt="">
-                                                </div>
-                                                <div class="story-img first-col-img" data-aos="fade-down"
-                                                    data-aos-duration="3000">
-                                                    <img src="<?php echo SITE_URL . $story['img2']; ?>" class="img-fluid"
-                                                        alt="" style="height: 160px">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="story-img second-col-img" data-aos="fade-down"
-                                                    data-aos-duration="2500">
-                                                    <img src="<?php echo SITE_URL . $story['img3']; ?>" class="img-fluid"
-                                                        alt="">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--/story-img-container -->
-                                </div>
-                            </div>
+            <div class="swiper-wrapper">
+                <?php foreach ($ourStories as $story): ?>
+                    <article class="swiper-slide clinical-journal-entry story-feature">
+                        <div class="clinical-journal-gallery">
+                            <img src="<?php echo SITE_URL . $story['img1']; ?>"
+                                alt="<?php echo htmlspecialchars($story['title']); ?>" loading="lazy" width="1000" height="650">
                         </div>
-                    <?php endforeach; ?>
-                </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
+                        <div class="clinical-journal-copy">
+                            <h3><?php echo htmlspecialchars($story['title']); ?></h3>
+                            <div class="clinical-journal-text"><?php echo $story['content']; ?></div>
+                        </div>
+                    </article>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
@@ -588,13 +554,15 @@ SCRIPTS;
 <!--/Story Section -->
 
 <!-- How It Works Section -->
-<section class="hw-section sec-py">
-    <div class="container">
+<section class="hw-section rx-hw workflow-redesign rx-sec-py">
+    <span class="rx-orb rx-orb--red" style="bottom:-140px;right:-120px;" aria-hidden="true"></span>
+    <div class="container" style="position:relative;z-index:1;">
         <div class="row justify-content-center">
             <div class="col-lg-8">
-                <div class="section-header text-center" data-aos="fade-down" data-aos-duration="2000">
-                    <h2 class="section-title">How It Works</h2>
-                    <p>A clinical workflow — from referral call to bedside handover.</p>
+                <div class="section-header text-center" data-rx>
+                    <p class="rx-kicker rx-kicker--center rx-kicker--light">Mission protocol</p>
+                    <h2 class="rx-sec-title rx-sec-title--light">How It Works</h2>
+                    <p class="rx-lead rx-lead--light">A clinical workflow — from referral call to bedside handover.</p>
                 </div>
             </div>
         </div>
@@ -602,33 +570,36 @@ SCRIPTS;
             <div class="row">
                 <div class="col-lg-6">
                     <p class="hw-rail-label d-none d-lg-block">Flight plan</p>
+                    <div class="rx-hw-rail">
+                    <svg class="rx-hw-route" viewBox="0 0 4 100" preserveAspectRatio="none" aria-hidden="true"><line x1="2" y1="0" x2="2" y2="100" vector-effect="non-scaling-stroke"/></svg>
                     <ul class="nav flex-column d-none d-lg-flex" id="v-pills-tab" role="tablist"
                         aria-orientation="vertical">
-                        <li class="nav-item" role="presentation" data-aos="fade-down" data-aos-duration="500">
-                            <button class="nav-link active" id="tab-1" aria-selected="true">Call Our Expert</button>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="tab-1" aria-selected="true" type="button" role="tab" aria-controls="tab-pane-1"><i class="fa-solid fa-phone" aria-hidden="true"></i><span>Call Our Expert</span></button>
                         </li>
-                        <li class="nav-item" role="presentation" data-aos="fade-down" data-aos-duration="800">
-                            <button class="nav-link" id="tab-2" aria-selected="false">Send Your Report</button>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="tab-2" aria-selected="false" type="button" role="tab" aria-controls="tab-pane-2"><i class="fa-solid fa-file-medical" aria-hidden="true"></i><span>Send Your Report</span></button>
                         </li>
-                        <li class="nav-item" role="presentation" data-aos="fade-down" data-aos-duration="1000">
-                            <button class="nav-link" id="tab-3" aria-selected="false">Consult with Doctor & Treating Doctor</button>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="tab-3" aria-selected="false" type="button" role="tab" aria-controls="tab-pane-3"><i class="fa-solid fa-user-doctor" aria-hidden="true"></i><span>Consult with Doctor & Treating Doctor</span></button>
                         </li>
-                        <li class="nav-item" role="presentation" data-aos="fade-down" data-aos-duration="1200">
-                            <button class="nav-link" id="tab-4" aria-selected="false">Make a conference with
-                                Doctor</button>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="tab-4" aria-selected="false" type="button" role="tab" aria-controls="tab-pane-4"><i class="fa-solid fa-video" aria-hidden="true"></i><span>Make a conference with
+                                Doctor</span></button>
                         </li>
-                        <li class="nav-item" role="presentation" data-aos="fade-down" data-aos-duration="1500">
-                            <button class="nav-link" id="tab-5" aria-selected="false">Medical Clearance & Requirement
-                                Discussion</button>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="tab-5" aria-selected="false" type="button" role="tab" aria-controls="tab-pane-5"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i><span>Medical Clearance & Requirement
+                                Discussion</span></button>
                         </li>
-                        <li class="nav-item" role="presentation" data-aos="fade-down" data-aos-duration="1800">
-                            <button class="nav-link" id="tab-6" aria-selected="false">Ask Our Team About Your
-                                Requirement</button>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="tab-6" aria-selected="false" type="button" role="tab" aria-controls="tab-pane-6"><i class="fa-solid fa-kit-medical" aria-hidden="true"></i><span>Ask Our Team About Your
+                                Requirement</span></button>
                         </li>
-                        <li class="nav-item" role="presentation" data-aos="fade-down" data-aos-duration="2000">
-                            <button class="nav-link" id="tab-7" aria-selected="false">Quote</button>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="tab-7" aria-selected="false" type="button" role="tab" aria-controls="tab-pane-7"><i class="fa-solid fa-file-invoice" aria-hidden="true"></i><span>Quote</span></button>
                         </li>
                     </ul>
+                    </div>
                 </div>
 
                 <div class="col-lg-6">
@@ -643,16 +614,15 @@ SCRIPTS;
                             <div id="collapse_1" class="accordion-collapse collapse show  d-lg-block"
                                 aria-labelledby="heading_1" data-bs-parent="#myTabContent">
                                 <div class="accordion-body">
-                                    <div class="img-box" data-aos="zoom-in-down" data-aos-duration="2000">
+                                    <div class="img-box">
                                         <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=70" class="img-fluid" alt="Hand holding a phone to call our medical transport experts" loading="lazy" decoding="async" width="900" height="506">
                                     </div>
-                                    <div data-aos="zoom-in-up" data-aos-duration="1000">
+                                    <div>
                                         <h3 class="title">Speak with our medical transport coordinators</h3>
                                         <p>Our dispatch team assesses patient acuity, location and timeline to recommend
                                             the right modality — charter air ambulance, commercial airline stretcher, or
                                             ALS/BLS ground ambulance — and assigns a doctor-led escort team.</p>
-                                        <a href="<?php echo SITE_URL; ?>/contact" class="btn btn-solid btn-md rounded"
-                                            data-aos="zoom-in" data-aos-duration="2000">Contact Us</a>
+                                        <a href="<?php echo SITE_URL; ?>/contact" class="btn btn-solid btn-md rounded">Contact Us</a>
                                     </div>
                                 </div>
                             </div>
@@ -670,7 +640,7 @@ SCRIPTS;
                             <div id="collapse_2" class="accordion-collapse collapse d-lg-block"
                                 aria-labelledby="heading_2" data-bs-parent="#myTabContent">
                                 <div class="accordion-body">
-                                    <div class="img-box" data-aos="zoom-in-down" data-aos-duration="2000">
+                                    <div class="img-box">
                                         <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=900&q=70" class="img-fluid" alt="Doctor reviewing patient medical records on a tablet" loading="lazy" decoding="async" width="900" height="506">
                                     </div>
                                     <div>
@@ -692,7 +662,7 @@ SCRIPTS;
                             <div id="collapse_3" class="accordion-collapse collapse d-lg-block"
                                 aria-labelledby="heading_3" data-bs-parent="#myTabContent">
                                 <div class="accordion-body">
-                                    <div class="img-box" data-aos="zoom-in-down" data-aos-duration="2000">
+                                    <div class="img-box">
                                         <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=900&q=70" class="img-fluid" alt="Doctor in clinical consultation" loading="lazy" decoding="async" width="900" height="506">
                                     </div>
                                     <div>
@@ -714,7 +684,7 @@ SCRIPTS;
                             <div id="collapse_4" class="accordion-collapse collapse d-lg-block"
                                 aria-labelledby="heading_4" data-bs-parent="#myTabContent">
                                 <div class="accordion-body">
-                                    <div class="img-box" data-aos="zoom-in-down" data-aos-duration="2000">
+                                    <div class="img-box">
                                         <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=900&q=70" class="img-fluid" alt="Video conference aligning the medical team and family" loading="lazy" decoding="async" width="900" height="506">
                                     </div>
                                     <div>
@@ -735,7 +705,7 @@ SCRIPTS;
                             <div id="collapse_5" class="accordion-collapse collapse d-lg-block"
                                 aria-labelledby="heading_5" data-bs-parent="#myTabContent">
                                 <div class="accordion-body">
-                                    <div class="img-box" data-aos="zoom-in-down" data-aos-duration="2000">
+                                    <div class="img-box">
                                         <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=900&q=70" class="img-fluid" alt="Doctor reviewing fit-to-fly medical clearance on a tablet" loading="lazy" decoding="async" width="900" height="506">
                                     </div>
                                     <div>
@@ -756,7 +726,7 @@ SCRIPTS;
                             <div id="collapse_6" class="accordion-collapse collapse d-lg-block"
                                 aria-labelledby="heading_6" data-bs-parent="#myTabContent">
                                 <div class="accordion-body">
-                                    <div class="img-box" data-aos="zoom-in-down" data-aos-duration="2000">
+                                    <div class="img-box">
                                         <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=900&q=70" class="img-fluid" alt="Clinical team preparing medical equipment for transfer" loading="lazy" decoding="async" width="900" height="506">
                                     </div>
                                     <div>
@@ -777,7 +747,7 @@ SCRIPTS;
                             <div id="collapse_7" class="accordion-collapse collapse d-lg-block"
                                 aria-labelledby="heading_7" data-bs-parent="#myTabContent">
                                 <div class="accordion-body">
-                                    <div class="img-box" data-aos="zoom-in-down" data-aos-duration="2000">
+                                    <div class="img-box">
                                         <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=900&q=70" class="img-fluid" alt="Transparent itemised quote documentation" loading="lazy" decoding="async" width="900" height="506">
                                     </div>
                                     <div>
@@ -797,70 +767,6 @@ SCRIPTS;
     </div>
 </section>
 <!--/How It Works Section -->
-
-<!-- Testimonials Section -->
-<section class="testimonial-section sec-py">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="section-header text-center">
-                    <p class="tst-kicker">Field reports</p>
-                    <h2 class="section-title">Patient &amp; Family Feedback</h2>
-                    <p>Experiences from transfers we have coordinated across India and worldwide</p>
-                </div>
-            </div>
-        </div>
-        <div class="testimonial-carousel">
-            <div class="swiper testimonialSwiper">
-                <div class="swiper-wrapper">
-                    <?php foreach (array_merge($googleReviews, $testimonials) as $testimonial):
-                        $initials = '';
-                        foreach (preg_split('/\s+/', trim($testimonial['author'])) as $w) {
-                            $initials .= strtoupper(substr($w, 0, 1));
-                        }
-                        $initials = substr($initials, 0, 2) ?: '?';
-                    ?>
-                        <div class="swiper-slide">
-                            <div class="card">
-                                <i class="fa-solid fa-quote-left tst-quote-mark" aria-hidden="true"></i>
-                                <div class="star-rating">
-                                    <?php for ($i = 0; $i < $testimonial['rating']; $i++): ?>
-                                        <i class="fa-solid fa-star"></i>
-                                    <?php endfor; ?>
-                                </div>
-                                <h3>
-                                    <?php echo htmlspecialchars($testimonial['content']); ?>
-                                </h3>
-                                <div class="client-info">
-                                    <span class="client-avatar" aria-hidden="true"><?php echo htmlspecialchars($initials); ?></span>
-                                    <span class="client-meta">
-                                        <strong class="client-name"><?php echo htmlspecialchars($testimonial['author']); ?></strong>
-                                        <?php
-                                        $desigParts = array_map('trim', explode(',', (string) $testimonial['designtion'], 2));
-                                        if ($desigParts[0] !== ''):
-                                            ?>
-                                            <span class="client-position"><?php echo htmlspecialchars($desigParts[0]); ?><?php if (!empty($desigParts[1])): ?><span class="client-sep" aria-hidden="true">•</span><?php echo htmlspecialchars($desigParts[1]); ?><?php endif; ?></span>
-                                        <?php endif; ?>
-                                    </span>
-                                </div>
-                            </div>
-                            <!--/card -->
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-pagination"></div>
-            </div>
-            <div class="tst-controls">
-                <button type="button" class="tst-prev" aria-label="Previous testimonial"><i class="fa-solid fa-arrow-left"></i></button>
-                <button type="button" class="tst-next" aria-label="Next testimonial"><i class="fa-solid fa-arrow-right"></i></button>
-            </div>
-        </div>
-        <!--/Testimonial-carousel -->
-    </div>
-</section>
-<!--/Testimonial Section -->
 
 <script>
     // Set content for text-to-speech

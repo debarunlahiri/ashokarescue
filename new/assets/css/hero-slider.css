@@ -1,0 +1,149 @@
+/* ============================================================
+   Hero slider — Ashoka Rescue home page
+   Fade carousel with Ken Burns backgrounds, staggered copy
+   entrance, pill pagination and glass prev/next controls.
+   ============================================================ */
+
+.hero-slider {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-slider .heroSwiper {
+    position: relative;
+}
+
+.hero-slider .swiper-slide {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    height: auto;
+}
+
+.hero-slider .hero-bg img {
+    transform: scale(1.02);
+}
+
+/* Slow zoom on the active slide's background (cinematic drift) */
+.hero-slider .swiper-initialized .swiper-slide-active .hero-bg img {
+    animation: heroKenBurns 7.5s ease-out forwards;
+}
+
+@keyframes heroKenBurns {
+    from { transform: scale(1); }
+    to { transform: scale(1.09); }
+}
+
+/* Staggered rise-in for the active slide's copy */
+.hero-slider .swiper-initialized .swiper-slide-active .hero-copy > * {
+    animation: heroCopyIn .75s cubic-bezier(.22, .61, .36, 1) both;
+}
+
+.hero-slider .swiper-initialized .swiper-slide-active .hero-copy > *:nth-child(2) { animation-delay: .1s; }
+.hero-slider .swiper-initialized .swiper-slide-active .hero-copy > *:nth-child(3) { animation-delay: .2s; }
+.hero-slider .swiper-initialized .swiper-slide-active .hero-copy > *:nth-child(4) { animation-delay: .3s; }
+.hero-slider .swiper-initialized .swiper-slide-active .hero-copy > *:nth-child(5) { animation-delay: .4s; }
+
+@keyframes heroCopyIn {
+    from { opacity: 0; transform: translateY(26px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Control bar: pill dots left, prev/next right, aligned to container */
+.hero-slider-controls {
+    position: absolute;
+    z-index: 6;
+    right: 0;
+    bottom: 2.75rem;
+    left: 0;
+    pointer-events: none;
+}
+
+.hero-slider-controls__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hero-slider-controls .hero-pagination,
+.hero-slider-controls .hero-nav {
+    pointer-events: auto;
+}
+
+.hero-slider .hero-pagination {
+    position: static;
+    width: auto;
+    transform: none;
+    text-align: left;
+}
+
+.hero-slider .hero-pagination .swiper-pagination-bullet {
+    width: 30px;
+    height: 4px;
+    margin: 0 5px 0 0 !important;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .35);
+    opacity: 1;
+    transition: width .3s ease, background-color .3s ease;
+}
+
+.hero-slider .hero-pagination .swiper-pagination-bullet-active {
+    width: 46px;
+    background: #74ddea;
+}
+
+.hero-slider .hero-nav {
+    display: flex;
+    gap: .6rem;
+}
+
+.hero-slider .hero-nav .swiper-button-prev,
+.hero-slider .hero-nav .swiper-button-next {
+    position: static;
+    width: 48px;
+    height: 48px;
+    margin: 0;
+    border: 1px solid rgba(255, 255, 255, .35);
+    border-radius: 50%;
+    color: #fff;
+    background: rgba(255, 255, 255, .08);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: background-color .25s ease, color .25s ease, transform .25s ease;
+}
+
+.hero-slider .hero-nav .swiper-button-prev::after,
+.hero-slider .hero-nav .swiper-button-next::after {
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.hero-slider .hero-nav .swiper-button-prev:hover,
+.hero-slider .hero-nav .swiper-button-next:hover {
+    color: #071b33;
+    background: #fff;
+    transform: translateY(-2px);
+}
+
+.hero-slider .hero-nav .swiper-button-prev:focus-visible,
+.hero-slider .hero-nav .swiper-button-next:focus-visible {
+    outline: 3px solid rgba(116, 221, 234, .5);
+    outline-offset: 2px;
+}
+
+@media (max-width: 991.98px) {
+    .hero-slider .hero-nav {
+        display: none;
+    }
+
+    .hero-slider-controls {
+        bottom: 1.75rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-slider .hero-bg img,
+    .hero-slider .swiper-initialized .swiper-slide-active .hero-copy > * {
+        animation: none !important;
+    }
+}

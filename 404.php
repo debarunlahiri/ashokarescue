@@ -44,7 +44,26 @@ include __DIR__ . '/includes/header.php';
 .e404-kicker::before{content:"";width:38px;height:2px;background:#e63946;flex:0 0 auto}
 .e404-code{font-family:ui-monospace,'Cascadia Mono','JetBrains Mono',Menlo,Consolas,monospace;
     font-weight:700;font-size:clamp(110px,20vw,220px);line-height:.95;margin:0 0 10px;
-    color:transparent;-webkit-text-stroke:1.5px rgba(125,211,252,.4)}
+    color:transparent;-webkit-text-stroke:1.5px rgba(125,211,252,.4);
+    animation:e404flicker 4s ease-in-out infinite}
+@keyframes e404flicker{0%,100%{-webkit-text-stroke-color:rgba(125,211,252,.4)}
+    50%{-webkit-text-stroke-color:rgba(230,57,70,.75)}}
+.e404-radar{position:absolute;top:50%;right:-140px;width:480px;height:480px;
+    transform:translateY(-50%);border-radius:50%;pointer-events:none;opacity:.5;
+    background:repeating-radial-gradient(circle,rgba(125,211,252,.10) 0 1px,transparent 1px 56px);
+    mask-image:radial-gradient(circle,#000 62%,transparent 72%);
+    -webkit-mask-image:radial-gradient(circle,#000 62%,transparent 72%)}
+.e404-radar::before{content:"";position:absolute;inset:0;border-radius:50%;
+    border:1px solid rgba(125,211,252,.25)}
+.e404-radar::after{content:"";position:absolute;inset:0;border-radius:50%;
+    background:conic-gradient(from 0deg,rgba(34,211,238,.5),transparent 24%);
+    animation:e404sweep 5s linear infinite}
+@keyframes e404sweep{to{transform:rotate(360deg)}}
+.e404-blip{position:absolute;border-radius:50%;background:#f87171;
+    box-shadow:0 0 12px #f87171;animation:e404blip 2.6s ease-in-out infinite}
+@keyframes e404blip{0%,100%{opacity:.25;transform:scale(.8)}50%{opacity:1;transform:scale(1.15)}}
+@media (max-width:767px){.e404-radar{right:-220px;opacity:.35}}
+@media (prefers-reduced-motion:reduce){.e404-radar::after,.e404-code,.e404-blip{animation:none}}
 .e404-hero .banner-title{color:#fff;margin:0 0 18px}
 .e404-hero .banner-title span{color:#22d3ee}
 .e404-copy{max-width:640px;color:#aebdd2;font-size:17px;line-height:1.7;margin:0 0 26px}
@@ -76,6 +95,11 @@ include __DIR__ . '/includes/header.php';
 
 <main class="e404">
     <section class="e404-hero">
+        <div class="e404-radar" aria-hidden="true">
+            <span class="e404-blip" style="top:30%;left:58%;width:9px;height:9px"></span>
+            <span class="e404-blip" style="top:64%;left:34%;width:7px;height:7px;animation-delay:-1.2s"></span>
+            <span class="e404-blip" style="top:46%;left:72%;width:6px;height:6px;animation-delay:-.6s"></span>
+        </div>
         <div class="container">
             <p class="e404-kicker">Signal lost</p>
             <div class="e404-code" aria-hidden="true">404</div>

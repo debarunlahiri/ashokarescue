@@ -1,0 +1,18 @@
+{
+    "private": true,
+    "scripts": {
+        "build:css": "tailwindcss -i resources/css/input.css -o assets/css/tailwind.css --minify",
+        "build:js": "esbuild resources/js/experience.js --minify --outfile=assets/js/experience.min.js",
+        "build": "npm run build:css && npm run build:js && npm run build:map",
+        "build:map": "node scripts/build-coverage-map.mjs"
+    },
+    "devDependencies": {
+        "@prettier/plugin-php": "^0.25.0",
+        "d3-geo": "^3.1.1",
+        "esbuild": "0.25.0",
+        "prettier": "^3.9.10",
+        "tailwindcss": "3.4.17",
+        "topojson-client": "^3.1.0",
+        "world-atlas": "^2.0.2"
+    }
+}

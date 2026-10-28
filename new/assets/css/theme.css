@@ -1,0 +1,428 @@
+/* Shared public-site theme. Loaded after page and legacy styles. */
+:root {
+    --brand-primary: #f45b20;
+    --brand-primary-hover: #d94710;
+    --brand-tertiary: #0a263b;
+    --brand-primary-text: var(--brand-tertiary);
+    --brand-primary-soft: #fff2ea;
+    --brand-navy: #102d43;
+    --brand-text: var(--brand-tertiary);
+    --brand-muted: #526c7d;
+    --brand-surface: #f5f8fa;
+    --brand-border: #dce5eb;
+    --brand-radius: 8px;
+    --clr-primary: var(--brand-primary);
+    --clr-secondary: var(--brand-primary);
+    --rx-red: var(--brand-primary);
+    --rx-orange: var(--brand-primary);
+    --rx-navy: var(--brand-navy);
+    --rx-text: var(--brand-text);
+    --rx-muted: var(--brand-muted);
+    --rx-paper: var(--brand-surface);
+    --flight-ink: var(--brand-text);
+    --flight-line: var(--brand-border);
+    --bs-primary: var(--brand-primary);
+    --bs-primary-rgb: 244, 91, 32;
+    --bs-link-color: var(--brand-primary-text);
+    --bs-link-hover-color: var(--brand-primary-hover);
+}
+body {
+    color: var(--brand-text);
+}
+:focus-visible {
+    outline-color: var(--brand-primary) !important;
+}
+::selection {
+    background: #ffdbc8;
+    color: var(--brand-navy);
+}
+/* Primary actions share one shape and color across every public template. */
+.flight-button-primary,
+.flight-button-dark,
+.site-footer-request,
+.btn.btn-primary,
+.btn.btn-solid,
+.rx-btn.rx-btn--red,
+.about-cta-primary,
+.contact-hero-primary,
+.ai-concierge .ai-concierge__launcher,
+.ai-concierge .ai-concierge__chat-form button,
+.ai-concierge .ai-concierge__submit {
+    background: var(--brand-primary);
+    border-color: var(--brand-primary);
+    border-radius: var(--brand-radius);
+    color: #fff;
+    box-shadow: none;
+}
+.flight-button-primary:hover,
+.flight-button-dark:hover,
+.site-footer-request:hover,
+.btn.btn-primary:hover,
+.btn.btn-solid:hover,
+.rx-btn.rx-btn--red:hover,
+.about-cta-primary:hover,
+.contact-hero-primary:hover,
+.ai-concierge .ai-concierge__launcher:hover,
+.ai-concierge .ai-concierge__launcher:focus-visible,
+.ai-concierge .ai-concierge__chat-form button:hover,
+.ai-concierge .ai-concierge__submit:hover {
+    background: var(--brand-primary-hover);
+    border-color: var(--brand-primary-hover);
+    color: #fff;
+}
+.brand-wordmark b {
+    color: var(--brand-primary);
+}
+#header .navbar-nav .nav-item .nav-link:hover,
+#header .navbar-nav .nav-item .nav-link.active,
+#header .dropdown-menu a:hover,
+#header .dropdown-menu a:focus-visible {
+    color: var(--brand-primary-text);
+}
+#header .navbar-nav .nav-item .nav-link::after {
+    background: var(--brand-primary);
+}
+.flight-text-link,
+.care-about-link,
+.site-footer-services a:hover,
+.site-footer-company a:hover,
+.google-review-source,
+[data-google-reviews] .google-review-read-more {
+    color: var(--brand-primary-text);
+}
+.flight-text-link,
+.care-about-link {
+    border-bottom-color: var(--brand-primary);
+}
+.flight-eyebrow,
+.rx-kicker,
+.company-profile-heading h2 span {
+    color: var(--brand-primary-text);
+}
+.rx-kicker::before,
+.flight-eyebrow::before {
+    background: var(--brand-primary);
+}
+/* Orange detail icons; transport maps and rating stars keep their own meaning. */
+.site-footer-services a > i,
+.site-footer-company a > i,
+.site-footer-office address > i,
+.company-document figcaption i,
+.company-profile-statistics i,
+.request-fieldset legend i {
+    color: var(--brand-primary);
+}
+.review-controls button,
+.flight-carousel-navigation button {
+    border-color: var(--brand-border);
+    color: var(--brand-primary-text);
+}
+.review-controls button:hover,
+.flight-carousel-navigation button:hover {
+    background: var(--brand-primary);
+    border-color: var(--brand-primary);
+    color: #fff;
+}
+.faq-page-accordion .accordion-button:not(.collapsed) {
+    color: var(--brand-primary-text);
+}
+/* All public forms use the same borders, radius and focus treatment. */
+.request-fields input,
+.request-fields select,
+.request-fields textarea,
+.faq-search input,
+.ai-concierge .ai-concierge__enquiry input,
+.ai-concierge .ai-concierge__enquiry select,
+.ai-concierge .ai-concierge__enquiry textarea {
+    border-color: var(--brand-border);
+    border-radius: var(--brand-radius);
+    color: var(--brand-text);
+    accent-color: var(--brand-primary);
+}
+.request-fields input:focus,
+.request-fields select:focus,
+.request-fields textarea:focus,
+.faq-search input:focus,
+.ai-concierge .ai-concierge__chat-form textarea:focus,
+.ai-concierge .ai-concierge__chat-form textarea:focus-visible {
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 3px rgb(244 91 32 / 12%);
+}
+input[type="checkbox"],
+input[type="radio"] {
+    accent-color: var(--brand-primary);
+}
+.ai-concierge {
+    --ai-orange: var(--brand-primary);
+    --ai-ink: var(--brand-text);
+    --ai-muted: var(--brand-muted);
+}
+.ai-concierge .ai-suggested-replies button,
+.ai-concierge .ai-message-action,
+.ai-concierge .ai-concierge__suggestions button {
+    color: var(--brand-primary-text);
+    background: var(--brand-primary-soft);
+    border-color: #f6cbb8;
+    border-radius: var(--brand-radius);
+}
+.ai-concierge .ai-suggested-replies button:hover,
+.ai-concierge .ai-message-action:hover,
+.ai-concierge .ai-concierge__suggestions button:hover {
+    background: #ffe3d4;
+    border-color: var(--brand-primary);
+    color: var(--brand-primary-text);
+}
+.ai-concierge .ai-message--user {
+    background: var(--brand-primary-soft);
+    border-color: #f6cbb8;
+    color: var(--brand-text);
+}
+#toggleButton.read-aloud-button {
+    color: var(--brand-primary-text);
+}
+#toggleButton.read-aloud-button:hover,
+#toggleButton.read-aloud-button[aria-pressed="true"],
+.scroll-top:hover .scroll-top-inner {
+    background: var(--brand-primary);
+    border-color: var(--brand-primary);
+    color: #fff;
+}
+.scroll-top .scroll-top-inner {
+    color: #fff;
+}
+/* Text on dark sections stays light for legibility. */
+.flight-hero .flight-eyebrow,
+.care-perspective .flight-eyebrow,
+.request-contact .flight-eyebrow,
+.rx-dark .rx-kicker,
+.rx-kicker--light {
+    color: #ffc6aa;
+}
+
+/* Tertiary navy is the shared text color on light surfaces. */
+.company-profile-heading h2,
+.company-profile-heading h2 span,
+.company-profile-copy p,
+.company-profile-copy p:first-child,
+.company-profile-statistics strong,
+.company-profile-statistics span,
+.company-document figcaption,
+.site-footer-company a,
+.site-footer-services a,
+.site-footer h3,
+.site-footer-email,
+.site-footer-office address,
+.site-footer-description,
+.request-fields label,
+.request-fieldset legend,
+.faq-search label,
+.faq-page-accordion .accordion-button,
+.faq-page-accordion .accordion-button:not(.collapsed),
+[data-google-reviews] .review-track blockquote p,
+.google-review-author a,
+.flight-text-link,
+.care-about-link,
+.flight-eyebrow,
+.rx-kicker {
+    color: var(--brand-tertiary);
+}
+/* Preserve light text where sections have dark backgrounds. */
+.flight-hero .flight-eyebrow,
+.care-perspective .flight-eyebrow,
+.request-contact .flight-eyebrow,
+.rx-dark .rx-kicker,
+.rx-kicker--light {
+    color: #d5e5ed;
+}
+
+/* Shared heading and body typography on light sections. */
+body :is(h1, h2, h3, h4, h5, h6) {
+    color: var(--brand-tertiary);
+}
+body :is(p, li, label, legend) {
+    color: var(--brand-tertiary);
+}
+body
+    :is(
+        .banner-section,
+        .flight-hero,
+        .care-perspective,
+        .coverage-section,
+        .request-contact,
+        .site-footer-contact-band,
+        .rx-dark,
+        .rx-mentor,
+        .rx-cta,
+        .reputation-intro,
+        .ai-concierge__header
+    )
+    :is(h1, h2, h3, h4, h5, h6, p, li, label, legend) {
+    color: #f1f6fa;
+}
+
+/* Reputation has a dark introduction beside light content rows. */
+.reputation-section .reputation-points,
+.reputation-section .reputation-point p {
+    color: var(--brand-tertiary);
+}
+.reputation-section .reputation-intro :is(h2, p) {
+    color: #f1f6fa;
+}
+.reputation-section .reputation-intro .rx-kicker {
+    color: #d5e5ed;
+}
+
+/* Service assurance strip: light surface, clear typography and orange icons. */
+.cta-section .service-assurance-strip {
+    position: relative;
+    padding: 0;
+    background: #f5f8fa;
+    border-block: 1px solid var(--brand-border);
+    backdrop-filter: none;
+}
+.service-assurance-strip .cta-content {
+    padding: 0;
+}
+.service-assurance-strip .cta-content ul {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.service-assurance-strip .cta-content ul li {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+    min-width: 0;
+    margin: 0;
+    padding: 28px 24px;
+}
+.service-assurance-strip .cta-content ul li + li {
+    border-left: 1px solid var(--brand-border);
+}
+.service-assurance-strip .cta-content .icon-box {
+    display: grid;
+    place-items: center;
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    color: var(--brand-primary);
+    font-size: 26px;
+}
+.cta-section .service-assurance-strip .cta-content ul li h3.title {
+    margin: 0;
+    color: var(--brand-tertiary);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: 0;
+}
+@media (max-width: 991.98px) {
+    .service-assurance-strip .cta-content ul {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .service-assurance-strip .cta-content ul li:nth-child(3) {
+        border-left: 0;
+    }
+    .service-assurance-strip .cta-content ul li:nth-child(n + 3) {
+        border-top: 1px solid var(--brand-border);
+    }
+}
+@media (max-width: 479.98px) {
+    .service-assurance-strip .cta-content ul li {
+        gap: 8px;
+        padding: 20px 8px;
+    }
+    .service-assurance-strip .cta-content .icon-box {
+        flex-basis: 28px;
+        width: 28px;
+        font-size: 21px;
+    }
+    .cta-section .service-assurance-strip .cta-content ul li h3.title {
+        font-size: 12px;
+    }
+}
+
+/* Icons always follow their button label, including inherited page styles. */
+button > i,
+.btn > i,
+.flight-button > i,
+.rx-btn > i,
+.site-footer-request > i {
+    color: inherit !important;
+}
+/* Outline controls on dark banners require light arrows in the resting state. */
+.flight-hero .flight-carousel-navigation button,
+.rx-dark :is(.swiper-button-next, .swiper-button-prev),
+.rx-mentor :is(.swiper-button-next, .swiper-button-prev) {
+    color: #fff;
+    border-color: #b8cbd7;
+    background: transparent;
+}
+.flight-hero .flight-carousel-navigation button:hover,
+.flight-hero .flight-carousel-navigation button:focus-visible {
+    color: #fff;
+    border-color: var(--brand-primary);
+    background: var(--brand-primary);
+}
+.flight-button-outline,
+.rx-btn--ghost,
+.about-cta-secondary,
+.contact-hero-secondary {
+    color: #fff;
+}
+/* Light-surface carousel controls use the shared navy foreground. */
+.review-controls button,
+.swiper-button-next,
+.swiper-button-prev {
+    color: var(--brand-tertiary);
+}
+.review-controls button:hover,
+.review-controls button:focus-visible {
+    color: #fff;
+    background: var(--brand-primary);
+    border-color: var(--brand-primary);
+}
+button:disabled,
+button[aria-disabled="true"] {
+    opacity: 0.5;
+    cursor: default;
+}
+
+/* Tertiary icon accent is distinct from text and primary actions. */
+:root {
+    --brand-icon: #477f91;
+    --brand-icon-on-dark: #9bd4df;
+}
+.site-footer-services a > i,
+.site-footer-company a > i,
+.site-footer-office address > i,
+.site-footer-email > i,
+.site-footer-socials a > i,
+.company-profile-statistics i,
+.request-fieldset legend i,
+.reputation-section .reputation-icon i,
+.service-assurance-strip .cta-content .icon-box,
+.service-assurance-strip .cta-content .icon-box i {
+    color: var(--brand-icon);
+}
+.request-contact i,
+.care-perspective i,
+.reputation-intro .reputation-record-icon i {
+    color: var(--brand-icon-on-dark);
+}
+
+/* Keep icons white on the filled About page badges. */
+.rx-assist-card .hw-assist-icon i,
+.rx-value-card .value-icon i {
+    color: #fff;
+}
